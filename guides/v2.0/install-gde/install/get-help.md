@@ -6,6 +6,7 @@ title: 获取您的安装的帮助
 menu_title: 获取您的安装的帮助
 menu_order: 1
 menu_node: parent
+version: 2.0
 github_link: install-gde/install/get-help.md
 ---
 

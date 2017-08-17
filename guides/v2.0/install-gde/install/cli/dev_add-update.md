@@ -6,18 +6,30 @@ title: 添加或更新组件
 menu_title: 添加或更新组件
 menu_order: 5
 menu_node: 
+version: 2.0
 github_link: install-gde/install/cli/dev_add-update.md
 ---
 
+<<<<<<< HEAD
 
 贡献代码开发者可以通过修改设置Magento的 `composer.json`文件来指定组件的版本。
 
 普通开发者, 请点击<a href="{{ site.gdeurl }}comp-mgr/bk-compman-upgrade-guide.html">更新Magento及其组件</a>.
+=======
+A contributing developer updates components by specifying components and their versions in Magento's `composer.json`. 
+
+To update components if you're *not* a contributing developer, see <a href="{{page.baseurl}}comp-mgr/bk-compman-upgrade-guide.html">Updating the Magento application and components</a>.
+>>>>>>> develop
 
 你也可以向`composer.json`添加 `require` 代码片段或者使用 `composer require` 命令，像这样:
 
+<<<<<<< HEAD
 1.	登录Magento服务器, 切换到Magento文件权限所有者.
 2.	切换到Magento的安装目录. 演示,
+=======
+1.	Log in to the Magento server, or switch to, the {% glossarytooltip 5e7de323-626b-4d1b-a7e5-c8d13a92c5d3 %}Magento file system owner{% endglossarytooltip %}.
+2.	Change to the directory to which you cloned the Magento application. For example,
+>>>>>>> develop
 
 		cd /var/www/magento2
 
@@ -32,7 +44,11 @@ Command usage:
 
 	composer require example/module:1.0.0
 
+<<<<<<< HEAD
 等待Composer更新依赖项和安装组件。
+=======
+Wait while {% glossarytooltip d85e2d0a-221f-4d03-aa43-0cda9f50809e %}Composer{% endglossarytooltip %} updates dependencies and installs the component.
+>>>>>>> develop
 
 ### 添加一个`require` 代码片段到 `composer.json`
 打开 `composer.json` 并编辑.
@@ -53,4 +69,8 @@ Command usage:
 
 <!-- ABBREVIATIONS -->
 
+<<<<<<< HEAD
 *[贡献代码开发者]: 向Magento2代码库贡献过代码的开发者
+=======
+*[contributing developer]: A developer who contributes code to the Magento 2 CE codebase
+>>>>>>> develop

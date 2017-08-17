@@ -6,11 +6,10 @@ title: Filter Component
 menu_title: Filter Component
 menu_node:
 menu_order: 1
+version: 2.0
 github_link: ui-components/ui-secondary-filter.md
 redirect_from: /guides/v2.0/ui-library/ui-secondary-filter.html
 ---
-
-<h3 id="filter">UI Filter Component</h3>
 
 The filter component must be declared as a child to the listing component.
 All column filters are declared as children to the filter component.
@@ -25,7 +24,7 @@ Currently the following filter types are supported:
 * range filter
 
 Example:
-`<your module root dir>/Magento/Cms/view/adminhtml/ui_component/cms_page_listing.xml`
+`<Magento_Cms_module_dir>/view/adminhtml/ui_component/cms_page_listing.xml`
 
 {% highlight xml %}
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">

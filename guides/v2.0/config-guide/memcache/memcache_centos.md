@@ -1,23 +1,19 @@
 ---
 layout: default
 group: config-guide
-subgroup: Caching_mem
+subgroup: 10_mem
 title: Install, configure, verify memcached on CentOS
 menu_title: Install, configure, verify memcached on CentOS
 menu_order: 3
 menu_node: 
+version: 2.0
 github_link: config-guide/memcache/memcache_ubuntu.md
 ---
-
-#### Contents
-*   <a href="#config-memcache-memcached">PHP memcache and memcached extensions</a>
-*   <a href="#config-memcache-install">Install and configure memcached on CentOS</a>
-*   <a href="#config-memcache-verify-its-cent">Verify memcached works before installing Magento</a>
 
 {% include config/php-memcache.md %}
 
 <h2 id="config-memcache-install">Install and configure memcached on CentOS</h2>
-This section provides instructions to install memcached on CentOS and Ubuntu. For additional information, consult the <a href="https://code.google.com/p/memcached/wiki/NewStart" target="_blank">memcached wiki</a>.
+This section provides instructions to install memcached on CentOS and Ubuntu. For additional information, consult the <a href="https://github.com/memcached/old-wiki" target="_blank">memcached wiki</a>.
 
 <div class="bs-callout bs-callout-info" id="info">
    <span class="glyphicon-class">
@@ -90,7 +86,7 @@ To verify memcached is recognized by the web server:
 
 ### Create a memcache test consisting of a MySQL database and PHP script
 
-The test uses a MySQL database, table, and data to verify you can retrieve the database data and store it in memcache. A PHP script first searches the cache. If the result does not exist, the script queries database. After the query has been fulfilled by the original database, the script stores the result in memcache, using the `set` command.
+The test uses a MySQL database, table, and data to verify you can retrieve the database data and store it in memcache. A {% glossarytooltip bf703ab1-ca4b-48f9-b2b7-16a81fd46e02 %}PHP{% endglossarytooltip %} script first searches the {% glossarytooltip 0bc9c8bc-de1a-4a06-9c99-a89a29c30645 %}cache{% endglossarytooltip %}. If the result does not exist, the script queries database. After the query has been fulfilled by the original database, the script stores the result in memcache, using the `set` command.
 
 <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-memcache-on-ubuntu-12-04" target="_blank">More details about this test</a>
 
@@ -109,13 +105,14 @@ At the `mysql` prompt, enter the following commands:
 
 Create `cache-test.php` in your web server's docroot:
 
-{% highlight PHP %}
-<?php
-$meminstance = new Memcache();
-$meminstance->pconnect('<memcache host name or ip>', <memcache port>);
+{% highlight php startinline=true %}
+if (class_exists('Memcache')) {
+    $meminstance = new Memcache();
+} else {
+    $meminstance = new Memcached();
+}
 
-mysql_connect("localhost", "memcache_test", "memcache_test") or die(mysql_error());
-mysql_select_db("memcache_test") or die(mysql_error());
+$meminstance->addServer('<memcache host name or ip>', <memcache port>);
 
 $query = "select id from example where name = 'new_data'";
 $querykey = "KEY" . md5($query);
@@ -123,15 +120,19 @@ $querykey = "KEY" . md5($query);
 $result = $meminstance->get($querykey);
 
 if (!$result) {
-   $result = mysql_fetch_array(mysql_query("select id from example where name = 'new_data'")) or die('mysql error');
-   $meminstance->set($querykey, $result, 0, 600);
-   print "got result from mysql\n";
-   return 0;
+   try {
+        $dbh = new PDO('mysql:host=localhost;dbname=memcache_test','memcache_test','memcache_test');
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $result = $dbh->query("select id from example where name = 'new_data'")->fetch();
+        $meminstance->set($querykey, $result, 0, 600);
+        print "got result from mysql\n";
+        return 0;
+    } catch (PDOException $e) {
+        die($e->getMessage());
+    }
 }
 print "got result from memcached\n";
 return 0;
-
-?>
 {% endhighlight %}
 
 where `<memcache host name or ip>` is either `localhost`, `127.0.0.1`, or the memcache host name or IP address. `<memcache port>` is its listen port; by default, `11211`.
@@ -171,4 +172,4 @@ Flush the memcache storage and quit Telnet:
 <a href="http://www.darkcoding.net/software/memcached-list-all-keys/" target="_blank">Additional information about the Telnet test</a>
 
 #### Next step
-<a href="{{ site.gdeurl }}config-guide/memcache/memcache_magento.html">Configure Magento to use memcached</a>
+<a href="{{page.baseurl}}config-guide/memcache/memcache_magento.html">Configure Magento to use memcached</a>

@@ -1,38 +1,40 @@
 ---
 layout: default
 group: arch-guide
-subgroup: 
+subgroup: Architectural Basics
 title: Security overview
-menu_title: Security 
-menu_order: 
+menu_title: Security
+menu_order:
+version: 2.0
 github_link: architecture/security_intro.md
 ---
 
-<h2 id="security_intro">Security overview</h2>
-Magento 2.0 includes the following security enhancements: 
+## Enhanced password management
 
+Magento has strengthened the hashing algorithms (SHA-256) used in password management.
 
+## Improved prevention of cross-site scripting (XSS) attacks by making escaped data the default
 
-* <b>Enhanced password management</b>. Magento has strengthened the hashing algorithms (SHA-256) used in password management. 
+The Magento Framework has adopted conventions that regulate the escaping of data in output. These conventions include the ability to escape  output for {% glossarytooltip a2aff425-07dd-4bd6-9671-29b7edefa871 %}HTML{% endglossarytooltip %} pages (HTML, JSON, and JavaScript) and email. Where possible, escaping is transparent to client code. See <a href="{{page.baseurl}}frontend-dev-guide/templates/template-security.html">Security measures against XSS attacks</a> in the {% glossarytooltip b00459e5-a793-44dd-98d5-852ab33fc344 %}Frontend{% endglossarytooltip %} Developer Guide.
 
+## More flexible file system ownership and permissions
 
-* <b>Improved prevention of cross-site scripting (XSS) attacks by making escaped data the default</b>. The Magento Framework has adopted conventions that regulate the escaping of data in output. These conventions include the ability to escape  output for HTML pages (HTML, JSON, and JavaScript) and email. Where possible, escaping is transparent to client code. See <a href="{{ site.gdeurl }}frontend-dev-guide/templates/template-security.html">Security measures against XSS attacks</a> in the Frontend Developer Guide. 
+Starting in version 2.0.6, Magento no longer explicitly sets file system permissions. Instead, we recommend that certain files and directories be writable in a development environment and read-only in a production environment.
 
-* <b>Restricted permissions for file access</b>. Ability to set discrete file access for production and developer  modes. This change tightens security on generated files, static files, and any files and directories created by Magento (including logs, backups, and reports). See <a href="{{ site.gdeurl }}install-gde/install/file-system-perms.html"> Set file system ownership and permissions </a> in the Installation Guide.
+To provide you with a simple way to restrict access to the file system in production, we provide the flexibility for you to further restrict those permissions using a [umask](http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html){:target="_blank"}.
 
-	Magento also provides  a CLI command that switches between developer mode and production mode. When you use the command to switch mode, the system also changes file system permissions. In production mode,   directory permissions are set to 750, and file permissions are set to 640. In developer mode, directory permissions are set to 770, and file permissions are set to 660. 
-	
-	(Permissions need to vary due to user need, of course. For example, the Magento file system owner must own the file system. In contrast, the web server user needs read access only to the file system and write access to some directories (such as `pub/media`). And the web server user should not have write access to the entire Magento file system. For more information, see <a href="{{ site.gdeurl }}install-gde/prereq/apache-user.html"> Create the magento file system owner</a>.)
+For an overview, see [Overview of ownership and permissions]({{page.baseurl}}install-gde/prereq/file-sys-perms-over.html).
 
-* <b>Improved prevention of clickjacking exploits</b>. Magento safeguards your store from clickjacking attacks by using an X-Frame-Options HTTP request header. For more information, see <a href="{{ site.gdeurl }}config-guide/secy/secy-xframe.html"> X-Frame-Options header</a>.
+For details about ownership and permissions in development and production, see [Magento ownership and permissions in development and production]({{page.baseurl}}).
 
-* <b>Use of non-default admin URL</b>. A default admin URL makes it easy to target attacks on specific locations using automated password guessing. To prevent against this type of attack, Magento by default creates a random Admin URI when you install the product. The CLI is provided so that you can  see the password if you forget it. You can also use the CLI change this URI.  Although the use of a non-default admin URL will not secure the site, its use will help prevent large-scale automated attacks. See <a href="{{ site.gdeurl }}install-gde/install/cli/install-cli-adminurl.html"> Display or change the Admin URI</a> in Configuration Guide for more information. 
+## Improved prevention of clickjacking exploits
 
+Magento safeguards your store from clickjacking attacks by using an X-Frame-Options HTTP request header. For more information, see <a href="{{page.baseurl}}config-guide/secy/secy-xframe.html"> X-Frame-Options header</a>.
 
+## Use of non-default Magento Admin URL
 
+A simple {% glossarytooltip 18b930cf-09cc-47c9-a5e5-905f86c43f81 %}Magento Admin{% endglossarytooltip %} {% glossarytooltip a05c59d3-77b9-47d0-92a1-2cbffe3f8622 %}URL{% endglossarytooltip %} (like `admin` or `backend`) makes it easy to target attacks on specific locations using automated password guessing. To prevent against this type of attack, Magento by default creates a random Admin URI when you install the product. The CLI is provided so that you can  see the password if you forget it. You can also use the CLI to change this URI.  Although the use of a non-default admin URL will not secure the site, its use will help prevent large-scale automated attacks. See <a href="{{page.baseurl}}install-gde/install/cli/install-cli-adminurl.html">Display or change the Admin URI</a> in Configuration Guide for more information.
 
-<h2>Related topics</h2>
-<a href="{{ site.gdeurl }}config-guide/bk-config-guide.html">Configuration Guide</a>
+## Related topics
 
-
-
+<a href="{{page.baseurl}}config-guide/bk-config-guide.html">Configuration Guide</a>

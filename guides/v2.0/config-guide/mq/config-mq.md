@@ -1,19 +1,19 @@
 ---
 layout: default
 group: config-guide
-subgroup: RabbitMQ
+subgroup: 15_RabbitMQ
 title: Configure message queue topology
 menu_title: Configure message queue topology
 menu_order: 2
+version: 2.0
 github_link: config-guide/mq/config-mq.md
 ---
+
 <div class="bs-callout bs-callout-warning">
   <p>The message queue topology can only be configured after Magento Community Edition has been installed and before Magento Enterprise Editions has been installed. </p>
 </div>
 
-
-Each module that is to be a publisher must be configured as such. If you want a module to use the MQF, create a `<module>/etc/queue.xml` file and define the publisher, consumers, exchanges and bindings. 
-
+Each module that is to be a {% glossarytooltip d5777fe2-f786-45d9-b052-cca8a10120d9 %}publisher{% endglossarytooltip %} must be configured as such. If you want a module to use the MQF, create a `<module>/etc/queue.xml` file and define the publisher, consumers, exchanges and bindings.
 
 <h2>Edit the <code>queue.xml</code> file</h2>
 The `queue.xml` file can contain the following elements:
@@ -50,7 +50,7 @@ The `publisher` element configures the type of connection and the exchange to pu
 </tr>
 <tr>
 <td>connection</td>
-<td>If RabbitMQ is to used to manage the queue, then the value must be <code>rabbitmq</code>. The value can also be <code>db</code> or the name of a custom adapter.</td>
+<td>If RabbitMQ is to used to manage the queue, then the value must be <code>rabbitmq</code>. The value can also be <code>db</code> or the name of a custom {% glossarytooltip edb42858-1ff8-41f9-80a6-edf0d86d7e10 %}adapter{% endglossarytooltip %}.</td>
 </tr>
 <tr>
 <td>exchange</td>
@@ -66,7 +66,7 @@ Configuring the `topic` element defines the interface that processes the message
 </tr>
 <tr>
 <td>name</td>
-<td><p>The name assigned to the topic. The format should be <code><i>object</i><b>.</b><i>action</i></code> You can further distinguish topic names by appending <code><b>.</b><i>subaction</i></code> to the end of the name. Use the past tense for all verbs, to indicate the event has already happened.</p>
+<td><p>The name assigned to the topic. The format should be <code><i>object</i><b>.</b><i>action</i></code> You can further distinguish topic names by appending <code><b>.</b><i>subaction</i></code> to the end of the name. Use the past tense for all verbs, to indicate the {% glossarytooltip c57aef7c-97b4-4b2b-a999-8001accef1fe %}event{% endglossarytooltip %} has already happened.</p>
 <p>Examples: <code>customer.created</code>, <code>customer.sent.email</code></p>
 <p>The value is specified in a <code>bind</code> element.</p></td>
 </tr>
@@ -132,13 +132,13 @@ The `bind` elements link topics to queues and exchanges, defining the message qu
 </tr>
 <tr>
 <td>topic</td>
-<td>The <code>name</code> of a topic defined in a <code>topic</code> element. You can specify an asterisk (*) or pound sign (#) as wildcards. </td>
+<td>The <code>name</code> of a topic defined in a <code>topic</code> element. You can specify an asterisk (\*) or pound sign (#) as wildcards. </td>
 </tr>
 </table>
 
 <h2>Sample `queue.xml` file</h2>
 {% highlight xml %}
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../lib/internal/Magento/Framework/Amqp/etc/queue.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
     <publisher name="test-publisher-1" connection="rabbitmq" exchange="magento"/>
     <publisher name="test-publisher-2" connection="db" exchange="magento"/>
     <topic name="customer.created" schema="Magento\Customer\Api\Data\CustomerInterface" publisher="test-publisher-1"/>
@@ -151,6 +151,6 @@ The `bind` elements link topics to queues and exchanges, defining the message qu
 {% endhighlight %}
 
 #### Related Topics
-*	<a href="{{ site.gdeurl }}config-guide/mq/rabbitmq-overview.html">RabbitMQ Overview</a>
-*	<a href="{{ site.gdeurl }}config-guide/mq/manage-mysql.html">Manage message queues with MySQL</a>
-*	<a href="{{ site.gdeurl }}install-gde/prereq/install-rabbitmq.html">Install RabbitMQ</a>
+*	<a href="{{page.baseurl}}config-guide/mq/rabbitmq-overview.html">RabbitMQ Overview</a>
+*	<a href="{{page.baseurl}}config-guide/mq/manage-mysql.html">Manage message queues with MySQL</a>
+*	<a href="{{page.baseurl}}install-gde/prereq/install-rabbitmq.html">Install RabbitMQ</a>

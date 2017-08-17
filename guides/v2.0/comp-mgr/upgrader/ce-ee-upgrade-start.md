@@ -1,11 +1,12 @@
 ---
 layout: default 
 group: compman
-subgroup: U_CE-EEUpgrade
+subgroup: 26_CE-EEUpgrade
 title: Upgrade from CE to EE
 menu_title: Upgrade from CE to EE
 menu_node: parent
 menu_order: 1
+version: 2.0
 github_link: comp-mgr/upgrader/ce-ee-upgrade-start.md
 ---
 
@@ -17,9 +18,9 @@ This section discusses how to upgrade Magento CE to Magento EE.
 </div>
 
 <h2 id="compman-prereq">Prerequisites</h2>
-Before continuing, complete all tasks discussed in <a href="{{ site.gdeurl }}comp-mgr/prereq/prereq_compman.html">Prerequisites</a>.
+Before continuing, complete all tasks discussed in <a href="{{page.baseurl}}comp-mgr/prereq/prereq_compman.html">Prerequisites</a>.
 
-In addition, you might need to install the PHP <a href="http://php.net/manual/en/book.bc.php" target="_blank">`bcmath`</a> extension, which is required by EE. Examples follow:
+In addition, you might need to install the {% glossarytooltip bf703ab1-ca4b-48f9-b2b7-16a81fd46e02 %}PHP{% endglossarytooltip %} <a href="http://php.net/manual/en/book.bc.php" target="_blank">`bcmath`</a> extension, which is required by EE. Examples follow:
 
 *	CentOS (using the `webtatic` repository): `yum -y install php56w-bcmath`
 *	Ubuntu (using the `ppa:ondrej/php5-5.6` repository): `apt-get -y install php5-bcmath`
@@ -31,7 +32,7 @@ In addition, you might need to install the PHP <a href="http://php.net/manual/en
 <h2 id="compman-access">Start System Upgrade from the Magento Admin</h2>
 To run System Upgrade:
 
-1.	Log in to the Magento Admin as an administrator.
+1.	Log in to the {% glossarytooltip 18b930cf-09cc-47c9-a5e5-905f86c43f81 %}Magento Admin{% endglossarytooltip %} as an administrator.
 2.	Click **System** > **Web Setup Wizard**.
 	The following page displays.<br><br>
 	<img src="{{ site.baseurl }}common/images/cman_upgr_initial.png" width="650px" alt="Specify whether to manage components or upgrade Magento">
@@ -46,12 +47,27 @@ To run System Upgrade:
 
 	From the list, click the version to which to upgrade. Typically, you'll choose the most recent version (indicated by **(latest)**.)
 
-#### Error
-	The following error can indicate one of several issues, including that you haven't entered your <a href="{{ site.gdeurl }}comp-mgr/prereq/prereq_auth-token.html">authentication keys</a> in the Magento Admin:
+After the upgrade completes, restart Varnish if you use it for page caching.
+
+	service varnish restart
+
+#### Errors
+*	The following error can indicate one of several issues, including that you haven't entered your <a href="{{page.baseurl}}comp-mgr/prereq/prereq_auth-token.html">authentication keys</a> in the Magento Admin:
 
 	<img src="{{ site.baseurl }}common/images/upgr-sorry.png" width="600px">
 
-	For suggested solutions to other causes indicated by this message, see <a href="{{ site.gdeurl }}comp-mgr/trouble/cman/were-sorry.html">troubleshooting</a>.
+	For suggested solutions to other causes indicated by this message, see <a href="{{page.baseurl}}comp-mgr/trouble/cman/were-sorry.html">troubleshooting</a>.
+
+*	The following error might display:
+
+		[2016-01-19 23:33:24 UTC] An error occurred while executing job 
+		"setup:upgrade {"command":"setup:upgrade"}": Could not complete 
+		setup:upgrade {"command":"setup:upgrade"} successfully: Source 
+		class "\Cybersource" for "CybersourceLogger" generation does not exist.
+
+	For more information, see <a href="{{page.baseurl}}comp-mgr/trouble/cman/ce-ee-upgrade.html">Error upgrading from CE to EE</a>.
+
+
 
 <h2 id="ce-ee-continue">Continue your upgrade</h2>
-From here, your upgrade is the same as any other upgrade. Continue with <a href="{{ site.gdeurl }}comp-mgr/upgrader/upgrade-main-pg.html">Step 1. Select versions to upgrade</a>.
+From here, your upgrade is the same as any other upgrade. Continue with <a href="{{page.baseurl}}comp-mgr/upgrader/upgrade-main-pg.html">Step 1. Select versions to upgrade</a>.

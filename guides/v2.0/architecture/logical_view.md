@@ -1,60 +1,65 @@
 ---
 layout: default
-group: 
+group:
 subgroup: Architecture
 title: Logical view
 menu_title: Logical view
 menu_order: 3
+version: 2.0
 github_link: architecture/logical_view.md
 redirect_from: /guides/v1.0/architecture/logical_view.html
 ---
 
+This page is a draft plan; please do not refere to it as a Magento Developer document.
 
-<h2>Magento components</h2> 
+## Magento components
 
+### Modules
 
-<h3>Modules</h3>
- <h4>Module anatomy</h4>
-  
- <h>Modules and areas</h4> 
-          
+#### Module anatomy
 
-<h3>Themes</h3>
- <h4>Default responsive theme</h4>
- <h4>Inheritance</h4> 
-          
-<h3>Language Packets/Translation files</h3>
-  
-<h2>Composer package</h2>
+#### Modules and areas
 
+## Themes
 
-<h2>Magento Framework</h2>
+#### Default responsive theme
 
-       <h3>Basic functions</h3>
-       
-       <h3>Framework libraries (PHP code under Magento\Framework)</h3>
-       code libraries that support implementation of resource models, not resource models themselves (PHP code under Magento\Framework)
-       non-PHP code libraries (JavaScript, LESS/CSS)
-       
-       <h3>Additional framework components</h3>
-       
-       <h4>infrastructure models</h4>
-        
-       approximately 40 non-commercial modules
-       <h4>areas of core commercial functionality</h4>
-        
-          <h2>Third-party frameworks</h2>
-          <h2>File System</h2>
-          
-       
-<h2>Libraries</h2> 
+#### Inheritance
 
- <h3>UI libraries</h3>
- Standard Magento styling components
- 
- <h3>Magento/Framework libraries</h3>
- 
-  <h3>Namespaces</h3>
-  
-  <h3>Dependencies</h3> 
+### Language Packets/Translation files
 
+## Composer package
+
+## Magento Framework
+
+### Basic functions
+
+### Framework libraries (PHP code under Magento\Framework)
+
+* Code libraries that support implementation of resource models, not resource models themselves (PHP code under Magento\Framework)
+
+* Non-PHP code libraries (JavaScript, LESS/CSS)
+
+### Additional framework components
+
+#### Infrastructure models
+
+Approximately 40 non-commercial modules
+
+#### Areas of core commercial functionality</h4>
+
+## Third-party frameworks
+
+## File System
+
+## Libraries
+
+### UI libraries
+
+Standard Magento styling components
+
+### Magento/Framework libraries
+
+### Namespaces
+
+### Dependencies 

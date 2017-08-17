@@ -1,42 +1,34 @@
 ---
 layout: default
 group: config-guide 
-subgroup: CLI
+subgroup: 04_CLI
 title: Translation dictionaries and language packages
 menu_title: Translation dictionaries and language packages
 menu_node: 
-menu_order: 250
+menu_order: 260
+version: 2.0
 github_link: config-guide/cli/config-cli-subcommands-i18n.md
 redirect_from: /guides/v1.0/config-guide/cli/config-cli-subcommands-i18n.html
 ---
-
-
-#### Contents
-
-*	<a href="#config-cli-xlate-overview">Overview of translations</a>
-*	<a href="#config-cli-before">First steps</a>
-*	<a href="#config-cli-subcommands-xlate-dict">Generate a translation dictionary</a>
-*	<a href="#config-cli-subcommands-xlate-pack">Create a language package</a>
-*	<a href="#config-cli-subcommands-xlate-examples">Examples of using translation commands</a>
 
 <h2 id="config-cli-xlate-overview">Overview of translations</h2>
 Magento translations enable you to customize and localize your store for multiple regions and markets. We improved the localization and customization of Magento instances by making translation dictionaries easier to update and maintain and reduced amount of code coupling and duplication.
 
 This topic discusses how to generate:
 
-*	Translation dictionaries, which are a convenient way to translate *some* words and phrases, such as those for a custom module or theme.
+*	Translation dictionaries, which are a convenient way to translate *some* words and phrases, such as those for a custom {% glossarytooltip c1e4242b-1f1a-44c3-9d72-1d5b1435e142 %}module{% endglossarytooltip %} or {% glossarytooltip d2093e4a-2b71-48a3-99b7-b32af7158019 %}theme{% endglossarytooltip %}.
 *	Language packages, which enable you to translate *any or all* words and phrases in the Magento application.
 
-For more information, see <a href="{{ site.gdeurl }}frontend-dev-guide/translations/xlate.html">Translation</a>.
+For more information, see <a href="{{page.baseurl}}frontend-dev-guide/translations/xlate.html">Translation</a>.
 
 <h2 id="config-cli-before">First steps</h2>
 {% include install/first-steps-cli.html %}
-In addition to the command arguments discussed here, see <a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands.html#config-cli-subcommands-common">Common arguments</a>.
+In addition to the command arguments discussed here, see <a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands.html#config-cli-subcommands-common">Common arguments</a>.
   
 <h2 id="config-cli-subcommands-xlate-dict">Generate a translation dictionary</h2>
-You can generate a translation dictionary to use by itself (for example, to translate words and phrases in a custom module) or for use by a language package. See one of the following sections:
+You can generate a translation dictionary to use by itself (for example, to translate words and phrases in a custom module) or for use by a {% glossarytooltip 9c4c7b9b-43f0-4454-8e8c-fb62ad40c35f %}language package{% endglossarytooltip %}. See one of the following sections:
 
-*	<a href="{{ site.gdeurl }}frontend-dev-guide/translations/xlate.html#m2devgde-xlate-dictionaries">About translation dictionaries</a>
+*	<a href="{{page.baseurl}}frontend-dev-guide/translations/xlate.html#m2devgde-xlate-dictionaries">About translation dictionaries</a>
 *	<a href="#config-cli-subcommands-xlate-dict-dict">Work with translation dictionaries</a>
 
 <h3 id="config-cli-subcommands-xlate-dict-dict">Work with translation dictionaries</h3>
@@ -117,7 +109,7 @@ Use the following guidelines when translating words and phrases:
     	"Buy %1 for %2 (%3 incl. tax) each","Compre %1 por %2 (%3 incl. imposto) cada"
 
 <h2 id="config-cli-subcommands-xlate-pack">Create a language package</h2>
-As opposed to a translation dictionary, you can translate any or all words and phrases in the Magento application using a language package. (You can translate a particular component&mdash;like a module or a theme&mdash;using a translation dictionary.) <a href="{{ site.gdeurl }}frontend-dev-guide/translations/xlate.html#m2devgde-xlate-languagepack">More information about language packages</a>.
+As opposed to a translation dictionary, you can translate any or all words and phrases in the Magento application using a language package. (You can translate a particular component&mdash;like a module or a theme&mdash;using a translation dictionary.) <a href="{{page.baseurl}}frontend-dev-guide/translations/xlate.html#m2devgde-xlate-languagepack">More information about language packages</a>.
 
 This section discusses how to create a language package, which writes `.csv` files to modules and themes. To create a language package, you must perform the tasks discussed in the following sections:
 
@@ -186,7 +178,7 @@ A language package is a directory under `app/i18n/<VendorName>` in the Magento f
 
 *	Required license files
 *	`composer.json`
-*	`registration.php` that <a href="{{ site.gdeurl }}extension-dev-guide/component-registration.html">registers</a> the language package
+*	`registration.php` that <a href="{{page.baseurl}}extension-dev-guide/build/component-registration.html">registers</a> the language package
 *	<a href="#config-cli-subcommands-xlate-pack-meta-xml">`language.xml`</a> meta-information file
 
 <div class="bs-callout bs-callout-info" id="info">
@@ -202,14 +194,14 @@ To create these files:
 	For example, Magento language packages are located in `app/i18n/magento`
 
 2.	Add any license files you require.
-3.	Add <a href="{{ site.gdeurl }}extension-dev-guide/composer-integration.html">`composer.json`</a> that specifies dependencies for your language package.
-4.	Register the language package with <a href="{{ site.gdeurl }}extension-dev-guide/component-registration.html">`registration.php`</a>
+3.	Add <a href="{{page.baseurl}}extension-dev-guide/build/composer-integration.html">`composer.json`</a> that specifies dependencies for your language package.
+4.	Register the language package with <a href="{{page.baseurl}}extension-dev-guide/build/component-registration.html">`registration.php`</a>
 5.	Add `language.xml` meta-information file as discussed in the next section.
 
 <h4 id="config-cli-subcommands-xlate-pack-meta-xml">Language package language.xml</h4>
 When declaring a language package in the `language.xml` configuration file, you must specify the sequence of the language inheritance for this package.
 
-Language inheritance enables you to create a new translation based on an existing one (the existing translation is referred to as the _parent_). The child translations override the parent. However, if the child translation fails to upload or display, the parent is used instead. If some child translation lacks a phrase or a word, this phrase or word is taken from the parent locale. <a href="#m2devgde-xlate-inheritancework">Examples of language package inheritance</a>.
+Language inheritance enables you to create a new translation based on an existing one (the existing translation is referred to as the _parent_). The child translations override the parent. However, if the child translation fails to upload or display, the parent is used instead. If some child translation lacks a phrase or a word, this phrase or word is taken from the parent {% glossarytooltip 05099dbb-d491-4e33-a065-16035cb2d4d9 %}locale{% endglossarytooltip %}. <a href="#m2devgde-xlate-inheritancework">Examples of language package inheritance</a>.
 
 To declare a package, specify the following information:
 
@@ -240,7 +232,6 @@ Suppose a language package descends from two other packages, and that those pack
 If a language package descends from two packages, its `language.xml` might look like the following:
 
 {% highlight xml %}
-
 <language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/Language/package.xsd">
     <code>en_GB</code>
     <vendor>magento</vendor>
@@ -342,8 +333,7 @@ Sample `composer.json`:
 
 Sample `registration.php`:
 
-{% highlight PHP %}
-<?php
+{% highlight php startinline=true %}
 /**
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
@@ -353,7 +343,6 @@ Sample `registration.php`:
     'magento_xx_yy',
     __DIR__
 );
-?>
 {% endhighlight %}
 
 Sample `language.xml`:
@@ -369,21 +358,21 @@ Sample `language.xml`:
 <language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/Language/package.xsd">
     <code>xx_YY</code>
     <vendor>examplecorp</vendor>
-    <package>xx_YY</package>
+    <package>xx_yy</package>
 </language>
 {% endhighlight %}
 
 #### Related topics
 
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cache.html">Manage the cache</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-index.html">Manage the indexers</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cron.html">Configure and run cron</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-compiler.html">Code compiler</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-mode.html">Set the Magento mode</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-urn.html">URN highlighter</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-depen.html">Dependency reports</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-static-view.html">Deploy static view files</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-less-sass.html">Create symlinks to LESS files</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-test.html">Run unit tests</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-layout-xml.html">Convert layout XML files</a>
-*	<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-perf-data.html">Generate data for performance testing</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cache.html">Manage the cache</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-index.html">Manage the indexers</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cron.html">Configure and run cron</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-compiler.html">Code compiler</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-mode.html">Set the Magento mode</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-urn.html">URN highlighter</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-depen.html">Dependency reports</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-static-view.html">Deploy static view files</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-less-sass.html">Create symlinks to LESS files</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-test.html">Run unit tests</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-layout-xml.html">Convert layout XML files</a>
+*	<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-perf-data.html">Generate data for performance testing</a>

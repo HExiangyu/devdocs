@@ -14,8 +14,7 @@ Thumbs.db
 
 # Config and output files #
 ###########################
-_site
-node_modules
+/_site/
 .jekyll-metadata
 CNAME
 _config.yml
@@ -26,12 +25,17 @@ ignore
 /_config.sasha.yml
 /_config.tana.yml
 /_config.public.yml
+/_config.local.yml
 /*.yml
 !_config.devdocs.yml
 /gen_public.bat
 /jk.bat
 *.bat
 *.sh
+!/vagrant/bootstrap.sh
 Rakefile
-Gemfile
-Gemfile.lock
+/vagrant/.vagrant/
+/vendor/
+/Gemfile.lock
+/node_modules/
+/package-lock.json

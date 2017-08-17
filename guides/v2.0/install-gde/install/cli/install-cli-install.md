@@ -5,6 +5,7 @@ subgroup: 05_Command-line installation
 title: 命令行安装Magento2
 menu_title: 命令行安装Magento2
 menu_order: 4
+version: 2.0
 github_link: install-gde/install/cli/install-cli-install.md
 redirect_from:
   -  /guides/v1.0/install-gde/install/install-cli-install.html
@@ -12,6 +13,7 @@ redirect_from:
 ---
 
 <div class="bs-callout bs-callout-tip">
+<<<<<<< HEAD
   <p>感到迷茫? 需要帮助? 试试我们的<a href="{{ site.gdeurl }}install-gde/install-quick-ref.html">安装快速参考 (教程)</a> 或 <a href="{{ site.gdeurl }}install-gde/install-roadmap_part1.html">安装指南 (参考)</a>.</p>
 </div>
   
@@ -26,14 +28,28 @@ redirect_from:
 
 
 <h2 id="instgde-install-cli-prereq">开始安装之前</h2>
+=======
+  <p>Totally lost? Need a helping hand? Try our <a href="{{page.baseurl}}install-gde/install-quick-ref.html">installation quick reference (tutorial)</a> or <a href="{{page.baseurl}}install-gde/install-roadmap_part1.html">installation roadmap (reference)</a>.</p>
+</div>
+  
+<h2 id="instgde-install-cli-prereq">Before you start your installation</h2>
+>>>>>>> develop
 
 你在开始之前，请确保:
 
+<<<<<<< HEAD
 1.	您的系统满足<a href="{{ site.gdeurl }}install-gde/system-requirements.html">Magento2 系统要求</a>.
 2.	您已经完成安装<a href="{{ site.gdeurl }}install-gde/prereq/prereq-overview.html">Magento2系统必备组件</a>.
 3.	您知道<a href="{{ site.gdeurl }}install-gde/install/pre-install.html">您的安装或升级路径</a>.
 4.	登录到Magento服务器后, <a href="{{ site.gdeurl }}install-gde/prereq/apache-user.html#install-update-depend-user-switch">切换到Magento文件系统拥有者</a>.
 5.	查阅更多信息请点击<a href="{{ site.gdeurl }}install-gde/install/cli/install-cli-subcommands.html">开始使用命令行安装</a>.
+=======
+1.	Your system meets the requirements discussed in <a href="{{page.baseurl}}install-gde/system-requirements.html">Magento system requirements</a>.
+2.	You completed all prerequisite tasks discussed in <a href="{{page.baseurl}}install-gde/prereq/prereq-overview.html">Prerequisites</a>.
+3.	You took your first installation steps as discussed in <a href="{{page.baseurl}}install-gde/bk-install-guide.html">Your install or upgrade path</a>.
+4.	After you log in to the Magento server, <a href="{{page.baseurl}}install-gde/prereq/file-sys-perms-over.html">switch to the Magento file system owner</a>.
+5.	Review the information discussed in <a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands.html">Get started with the command-line installation</a>.
+>>>>>>> develop
 
 <div class="bs-callout bs-callout-info" id="info">
 <span class="glyphicon-class">
@@ -50,6 +66,7 @@ redirect_from:
 
 <div class="bs-callout bs-callout-info" id="info">
 <span class="glyphicon-class">
+<<<<<<< HEAD
   <ul><li>默认情况下，安装程序不会覆盖 Magento 数据库，如果你在相同的数据库实例中安装 Magento 软件。你可以使用可选的<code>cleanup-database</code> 参数来更改此行为。</li>
   <li>如果您在安装过程中出现错误,请查阅<a href="{{ site.gdeurl }}install-gde/trouble/tshoot.html">疑难解答</a>.</li></ul></span>
 </div>
@@ -57,6 +74,18 @@ redirect_from:
 <h2 id="instgde-cli-help-cmds">安装程序的帮助命令</h2>
 
 您可以运行下面的命令来寻找一些必需的参数:
+=======
+  <ul><li>By default, the installer doesn't overwrite the Magento database if you install the Magento software in the same database instance. You can use the optional <code>cleanup-database</code> parameter to change this behavior.</li>
+  <li>If you get errors during the installation, see <a href="{{page.baseurl}}install-gde/trouble/tshoot.html">Troubleshooting</a>.</li></ul></span>
+</div>
+
+See also <a href="{{page.baseurl}}install-gde/install/cli/install-cli-uninstall.html">Update, reinstall, uninstall</a>.
+
+{% include install/fully-secure.md %}
+
+## Installer help commands {#instgde-cli-help-cmds}
+You can run the following commands to find values for some required arguments:
+>>>>>>> develop
 
 <table>
 <tbody>
@@ -81,7 +110,11 @@ redirect_from:
 
 <div class="bs-callout bs-callout-info" id="info">
 <span class="glyphicon-class">
+<<<<<<< HEAD
   <p>如果当您运行这些命令，显示的错误,请确保您已 <a href="{{ site.gdeurl }}install-gde/install/prepare-install.html">更新安装依赖包</a>.</p></span>
+=======
+  <p>If an error displays when you run these commands, make sure you updated installation dependencies as discussed in <a href="{{page.baseurl}}install-gde/install/prepare-install.html">Update installation dependencies</a>.</p></span>
+>>>>>>> develop
 </div>
 
 	
@@ -128,9 +161,15 @@ Magento2的命令行安装格式是这样的:
 	</tr>
 	<tr>
 		<td><p>--admin-password</p></td>
+<<<<<<< HEAD
 		<td><p>管理员账号的密码.</p>
 			<p>密码必须至少 7 个字符的长度，并且必须包含至少一个字母和至少一个数字字符.</p>
 			<p>我们建议更长、 更复杂的密码。将整个密码字符串括在单引号和特殊字符的转义<code>/</code>. For example, <code>--admin-password='A0b9\%t_3\`g'</code></p></td>
+=======
+		<td><p>Magento administrator user password.</p>
+			<p>The password must be at least 7 characters in length and must include at least one alphabetic and at least one numeric character.</p>
+			<p>We recommend a longer, more complex password. Enclose the entire password string in single quotes. For example, <code>--admin-password='A0b9%t_3`g'</code></p></td>
+>>>>>>> develop
 		<td><p>Yes</p></td>
 	</tr>
 		<tr>
@@ -149,8 +188,8 @@ Magento2的命令行安装格式是这样的:
 		<td><p>--backend-frontname</p></td>
 		<td><p>Uniform Resource Identifier (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2" target="_blank">URI</a>) to access the Magento Admin or omit this parameter to let Magento generate a random URI for you.</p>
 			<p>We recommend a random URI for security purposes. A random URI is harder for hackers or malicious software to exploit.</p>
-			<p>The URI displays at the end of the installation. You can display it later at any time using the <a href="{{ site.gdeurl }}install-gde/install/install-cli-adminurl.html">magento info:adminuri</a> command.</p>
-			<p>If you choose to enter a value, we recommend you <em>not</em> use a common word like <code>admin</code>, <code>backend</code>, and so on. The Admin URI can contain alphanumeric values, the underscore character (<code>_</code>), and the dash character (<code>-</code>) only. It can be up to 255 characters in length.</p></td>
+			<p>The URI displays at the end of the installation. You can display it later at any time using the <a href="{{page.baseurl}}install-gde/install/cli/install-cli-adminurl.html">magento info:adminuri</a> command.</p>
+			<p>If you choose to enter a value, we recommend you <em>not</em> use a common word like <code>admin</code>, <code>backend</code>, and so on. The Admin URI can contain alphanumeric values and the underscore character (<code>_</code>) only. </p></td>
 		<td><p>No</p></td>
 	</tr>
 	<tr>
@@ -211,15 +250,16 @@ Magento2的命令行安装格式是这样的:
 	</tr>
 	<tr>
 		<td><p>--use-secure</p></td>
-		<td><p><code>1</code> enables the use of Secure Sockets Layer (SSL) in all storefront URLs. Make sure your web server supports SSL before you select this option.</p>
+		<td><p><code>1</code> enables the use of Secure Sockets Layer (SSL) in storefront URLs. Make sure your web server supports SSL before you select this option.</p>
 		<p><code>0</code> disables the use of SSL with Magento. In this case, all other secure URL options are assumed to also be <code>0</code>. This is the default.</p>
-		<p>To have a fully secure site, you must enable <em>both</em> <code>--use-secure=1</code> and <code>--base-url-secure=1</code>.</p></td>
+		</td>
 		<td><p>No</p></td>
 	</tr>
 	<tr>
 		<td><p>--base-url-secure</p></td>
-		<td><p>Secure base URL to use to access your Magento Admin using SSL.</code></p>
-		<p>To have a fully secure site, you must enable <em>both</em> <code>--use-secure=1</code> and <code>--base-url-secure=1</code>.</p></td>
+		<td>Secure base URL to use to access your Magento Admin and storefront in the following format:
+		<code>http[s]://&lt;host or ip>/&lt;your Magento install dir>/</code>
+		</td>
 		<td><p>No</p></td>
 	</tr>
 
@@ -238,21 +278,21 @@ Magento2的命令行安装格式是这样的:
 	<!-- <tr> 
 		<td>enable_modules=&lt;list>}</td>
 		<td><p>Enable modules that are installed but disabled where <code>&lt;list></code> is a comma-separated list of modules (no spaces allowed). Use <code>php index.php help module-list</code> to list enabled and disabled modules.</p>
-		<p>To enable and disable modules after installing Magento, see <a href="{{ site.gdeurl }}install-gde/install/cli/install-cli-subcommands-enable.html">Enable and disable modules</a>.</p>
-		<p>For important information about module dependencies, see <a href="{{ site.gdeurl }}install-gde/install/cli/install-cli-subcommands-enable.html#instgde-cli-subcommands-enable-modules">About enabling and disabling modules</a>.</p></td>  
+		<p>To enable and disable modules after installing Magento, see <a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-enable.html">Enable and disable modules</a>.</p>
+		<p>For important information about module dependencies, see <a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-enable.html#instgde-cli-subcommands-enable-modules">About enabling and disabling modules</a>.</p></td>  
 		<td>No</td>
 	</tr>
 	<tr>
 		<td>disable_modules=&lt;list>}</td>
 		<td><p>Disable modules that are installed and enabled where <code>&lt;list></code> is a comma-separated list of modules (no spaces allowed). Use <code>php index.php help module-list</code> to list enabled and disabled modules.</p>
-		<p>To enable and disable modules after installing Magento, see <a href="{{ site.gdeurl }}install-gde/install/cli/install-cli-subcommands-enable.html">Enable and disable modules</a>.</p>
-		<p>For important information about module dependencies, see <a href="{{ site.gdeurl }}install-gde/install/cli/install-cli-subcommands-enable.html#instgde-cli-subcommands-enable-modules">About enabling and disabling modules</a>.</p></td>
+		<p>To enable and disable modules after installing Magento, see <a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-enable.html">Enable and disable modules</a>.</p>
+		<p>For important information about module dependencies, see <a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-enable.html#instgde-cli-subcommands-enable-modules">About enabling and disabling modules</a>.</p></td>
 		<td>No</td>
 	</tr> -->
 	<tr>
 		<td><p>--session-save</p></td>
 		<td><p>Use any of the following:</p>
-		<ul><li><code>db</code> to store session data in the <a href="{{ site.gdeurl }}config-guide/database/database.html">database</a>. Choose database storage if you have a clustered database; otherwise, there might not be much benefit over file-based storage.</li>
+		<ul><li><code>db</code> to store session data in the <a href="{{page.baseurl}}config-guide/cache/caching-database.html">database</a>. Choose database storage if you have a clustered database; otherwise, there might not be much benefit over file-based storage.</li>
 			
 			<li><code>files</code> to store session data in the file system. File-based session storage is appropriate unless the Magento file system access is slow or you have a clustered database.</li>
 	</ul></td>
@@ -260,7 +300,7 @@ Magento2的命令行安装格式是这样的:
 	</tr>
 	<tr>
 		<td><p>--key</p></td>
-		<td><p>If you have one, specify a key to encrypt personally identifiable data in the Magento database. If you don't have one, Magento generates one for you.</p></td>
+		<td><p>If you have one, specify a key to encrypt <a href="#sens-data">sensitive data</a> in the Magento database. If you don't have one, Magento generates one for you.</p></td>
 		<td><p>No</p></td>
 	</tr>
 	<tr>
@@ -279,14 +319,9 @@ Magento2的命令行安装格式是这样的:
 		<td><p>Specify a string value to use as a prefix for sales orders. Typically, this is used to guarantee unique order numbers for payment processors.</p></td>
 		<td><p>No</p></td>
 	</tr>
-	<!-- <tr>
-		<td><p>--definition_format</p></td>
-		<td><p>Type of definitions used by the Object Manager. Possible values are <a href="https://github.com/phadej/igbinary" target="_blank"><code>igbinary</code></a> or <code>serialized</code>.</p></td>
-		<td><p>No</p></td>
-	</tr> -->
 <tr>
 <td><p>--amqp-host</p></td>
-<td><p>Enterprise Edition only. Do not use the --amqp options unless you have already set up an installation of RabbitMQ. See <a href="{{ site.gdeurl }}install-gde/prereq/install-rabbitmq.html">RabbitMQ installation</a> for more information about .</p>
+<td><p>Enterprise Edition only. Do not use the --amqp options unless you have already set up an installation of RabbitMQ. See <a href="{{page.baseurl}}install-gde/prereq/install-rabbitmq.html">RabbitMQ installation</a> for more information about .</p>
 <p>The host name where RabbitMQ is installed.</p></td>
 <td><p>No</p></td>
 </tr>
@@ -310,11 +345,21 @@ Magento2的命令行安装格式是这样的:
 
 <div class="bs-callout bs-callout-info" id="info">
 <span class="glyphicon-class">
+<<<<<<< HEAD
   <p>安装 Magento2 后，如果需要激活或者禁用模块, 请点击<a href="{{ site.gdeurl }}install-gde/install/install-cli-subcommands-enable.html">激活和禁用Magento2模块</a>.</p>
   	</span>
 </div>
 
 <h4 id="install-cli-example">示例本地主机安装</h4>
+=======
+  <p>To enable or disable modules after installing Magento, see <a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-enable.html">Enable and disable modules</a>.</p>
+  	</span>
+</div>
+
+{% include install/sens-data.md %}
+
+<h4 id="install-cli-example">Sample localhost installations</h4>
+>>>>>>> develop
 
 **示例 1**
 
@@ -407,6 +452,34 @@ Magento2的命令行安装格式是这样的:
   <p>安装命令输入必须为一行，就像上面的代码使用 <code>\</code> 一样.</p></span>
 </div>
 
+<<<<<<< HEAD
 #### 下一步
 
 <a href="{{ site.gdeurl }}install-gde/install/verify.html">验证安装</a>.
+=======
+#### Next step
+*	If you have one user account to access the Magento server, see [Optionally set a umask]({{page.baseurl}}install-gde/install/post-install-umask.html).
+
+	This type of setup is typical for shared hosting.
+*	[Verify the installation]({{page.baseurl}}install-gde/install/verify.html).
+
+#### Related topics
+
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-install.html">Installing the Magento software using the command line</a>
+*	[Remove sample data modules or update sample data]({{ page.baseurl }}install-gde/install/cli/install-cli-sample-data-other.html)
+*	[Display or change the Admin URI]({{ page.baseurl }}install-gde/install/cli/install-cli-adminurl.html)
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-enable.html">Enable or disable modules</a>
+*	[Uninstall modules]({{ page.baseurl }}install-gde/install/cli/install-cli-uninstall-mods.html)
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-deployment.html">Create or update the deployment configuration</a>
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-maint.html">Enable or disable maintenance mode</a>
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-db.html">Create the Magento database schema</a>
+*	[Update the Magento database schema and data]({{ page.baseurl }}install-gde/install/cli/install-cli-subcommands-db-upgr.html)
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-store.html">Configure the store</a>
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-subcommands-admin.html">Create a Magento administrator</a>
+*	[Back up and roll back the file system, media, and database]({{ page.baseurl }}install-gde/install/cli/install-cli-backup.html)
+*	[Uninstall themes]({{ page.baseurl }}install-gde/install/cli/install-cli-theme-uninstall.html)
+*	[Uninstall language packages]({{ page.baseurl }}install-gde/install/cli/install-cli-uninstall-langpk.html)
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-uninstall.html#instgde-install-uninstall">Uninstall the Magento software</a>
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-uninstall.html#instgde-install-magento-update">Update the Magento software</a>
+*	<a href="{{page.baseurl}}install-gde/install/cli/install-cli-uninstall.html#instgde-install-magento-reinstall">Reinstall the Magento software</a>
+>>>>>>> develop

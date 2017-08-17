@@ -1,17 +1,24 @@
 ---
 layout: default
 group: config-guide
-subgroup: Solr
+subgroup: 15_Solr
 title: Prepare Solr for production
 menu_title: Prepare Solr for production
 menu_order: 3
-menu_node: 
+menu_node:
+version: 2.0
 github_link: config-guide/solr/solr-script.md
 ---
 
 <img src="{{ site.baseurl }}common/images/ee-only_large.png" alt="This topic applies to Enterprise Edition only">
 
-<h2 id="solr-prod">Prepare Solr for production</h2>
+<div class="bs-callout bs-callout-warning" markdown="1">
+Solr is deprecated in Magento 2.1 and will not be supported in 2.2. 
+In a future release, Solr compatibility will be removed.
+
+If possible, use [Elastic Search]({{page.baseurl}}config-guide/elasticsearch/es-overview.html) as an alternative catalog search engine.
+</div>
+
 After you've tested the Solr solution, you should perform the following tasks to get it ready for production:
 
 *	See more Solr configuration options in the Magento EE User Guide (available with the Magento 2 EE release)
@@ -19,7 +26,7 @@ After you've tested the Solr solution, you should perform the following tasks to
 *	Implement a custom web application deployed to a scalable application server
 *	Consider a dedicated Solr server, or at least deploying Solr to a different server than Magento
 *	Consider scalability by <a href="https://cwiki.apache.org/confluence/display/solr/SolrCloud" target="_blank">clustering Solr</a>
-*	<a href="http://wiki.apache.org/solr/" target="_blank">Apache Solr Wiki</a>Customize Solr</a>
+*	[Customize Solr](http://wiki.apache.org/solr){:target="_blank"}
 
 	<div class="bs-callout bs-callout-warning">
 		<p>Customize the Solr search engine at your own risk. Magento supports only the options displayed in the Admin. Customizing the Solr engine itself, while potentially useful, can cause issues with Magento. If you encounter problems with your customizations, do not contact Magento Support; instead, consult the resources available from the <a href="http://wiki.apache.org/solr/" target="_blank">Apache Solr Wiki</a>.</p>
@@ -27,7 +34,13 @@ After you've tested the Solr solution, you should perform the following tasks to
 *	If you choose to enable SELinux, set up <a href="http://wiki.centos.org/HowTos/SELinux" target="_blank">rules</a> to allow Magento and Solr to communicate with each other
 
 	SELinux settings are entirely up to you; Magento does not recommend either enabling it or disabling it. Because SELinux is very complex, make sure you have an experienced system administrator who can configure it.
-*	Script Solr startup and shutdown as discussed in the next section
+*	Script Solr startup and shutdown as discussed in <a href="#solr-script">Script Solr startup and shutdown</a>
+
+<h3 id="cores">Multiple core configuration</h3>
+
+If you have created multiple cores, make sure the value of the `maxBooleanClauses` parameter is the same on each. This parameter is defined in each core's `solrconfig.xml` file. Solr uses the value defined for the core that initialized most recently as the value for all cores. The default value for the Magento installation is 10240.
+
+If one or more of the `maxBooleanClauses` parameters is set too low, the search results page could display no results.
 
 <h3 id="solr-script">Script Solr startup and shutdown</h3>
 In a production environment, you should start and stop Solr using a script.
@@ -39,16 +52,16 @@ In a production environment, you should start and stop Solr using a script.
 Create a script named <code>/etc/init.d/solr</code> with options similar to the following:
 
 	#!/bin/sh
- 
+
 	#Starts, stops, and restarts Apache Solr.
 	#chkconfig: 35 92 08
 	#description: Starts and stops Apache Solr
- 
+
 	SOLR_DIR="<your Solr install dir>"
 	JAVA_OPTIONS="-Xmx1024m -DSTOP.PORT=<jetty-stop-port> -DSTOP.KEY=<jetty-stop-key> -jar  start.jar"
 	LOG_FILE="<path-to-solr-log-file>"
 	JAVA="<java_home>"
- 
+
 	case $1 in
 	start)
 	echo -n "Starting Solr"
@@ -72,7 +85,7 @@ Create a script named <code>/etc/init.d/solr</code> with options similar to the 
 	esac
 
 All parameters shown in the following table are required.
- 
+
 <table>
 <col width="200">
 <col width="300">
@@ -93,7 +106,7 @@ All parameters shown in the following table are required.
   For <code>-DSTOP.PORT=</code>, specify any unused port.
 
   For <code>-DSTOP.KEY=</code>, specify a string. If you omit a value for <code>-DSTOP.KEY=</code>, Jetty generates a random key you must enter to stop Jetty.
- 
+
   For more information, see <a href="https://wiki.eclipse.org/Jetty/Howto/Configure_SSL" target="_blank">Securing Jetty</a>.
 </td>
 </tr>
@@ -111,16 +124,16 @@ All parameters shown in the following table are required.
 An example follows:
 
 	#!/bin/sh
- 
+
 	#Starts, stops, and restarts Apache Solr.
 	#chkconfig: 35 92 08
 	#description: Starts and stops Apache Solr
- 
+
 	SOLR_DIR="/opt/solr/apache-solr-4-10-4/example"
 	JAVA_OPTIONS="-Xmx1024m -DSTOP.PORT=8079 -DSTOP.KEY=mykey -jar  start.jar"
 	LOG_FILE="/var/log/solr.log"
 	JAVA="/usr/bin/java"
- 
+
 	case $1 in
 	start)
 	echo -n "Starting Solr"
@@ -155,7 +168,6 @@ To complete the script:
 
 	Stop Solr: `/etc/init.d/solr stop`
 *	Restart Solr: `/etc/init.d/solr restart`
-
 
 <!-- <h2 id="next"></a>Next steps</h2>
 For additional information about Solr, see the following:

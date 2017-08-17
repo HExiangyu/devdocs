@@ -5,36 +5,42 @@ subgroup: checkout
 title: Add a new checkout step
 menu_title: Add a new checkout step
 menu_order: 1
+version: 2.0
 github_link: howdoi/checkout/checkout_new_step.md
 ---
 
 ## What's in this topic
-The default Magento Checkout consists of two steps:
+The default Magento {% glossarytooltip 278c3ce0-cd4c-4ffc-a098-695d94d73bde %}Checkout{% endglossarytooltip %} consists of two steps:
 
  - Shipping Information
- - Review and Paymetns Information
+ - Review and Payments Information
 
-You can add a custom checkout step, it should be implemented as a UI component. For the sake of compatibility, upgradability and easy maintenance, do not edit the default Magento code, add your customizations in a separate module. 
+You can add a custom checkout step, it should be implemented as a {% glossarytooltip 9bcc648c-bd08-4feb-906d-1e24c4f2f422 %}UI component{% endglossarytooltip %}. For the sake of compatibility, upgradability and easy maintenance, do not edit the default Magento code, add your customizations in a separate {% glossarytooltip c1e4242b-1f1a-44c3-9d72-1d5b1435e142 %}module{% endglossarytooltip %}. 
 
-This topic describes how to create the frontend part of the component, implementing a checkout step, and how to add it to the checkout flow.
+This topic describes how to create the {% glossarytooltip b00459e5-a793-44dd-98d5-852ab33fc344 %}frontend{% endglossarytooltip %} part of the component, implementing a checkout step, and how to add it to the checkout flow.
+
 
 ## Create the view part of the checkout step component
 
 To create the view part of the new checkout step:
 
-1. Add a module directory (not covered in this topic). See [Build your module]({{site.gdeurl}}extension-dev-guide/build.html) for details). All custom files must be stored there. For your checkout customization to be applied correctly, your custom module should depend on the Magento_Checkout module.
+1. Add a module directory (not covered in this topic). See [Build your module]({{page.baseurl}}extension-dev-guide/build/build.html) for details). All custom files must be stored there. For your checkout customization to be applied correctly, your custom module should depend on the `Magento_Checkout` module. Do not use `Ui` for your custom module name, because `%Vendor%_Ui` notation, required when specifying paths, might cause issues. 
 1. Create the `.js` file implementing the view model.
 2. Create an `.html` template for the component.
 
-Each step is described in details in the folowing paragraphs. 
+Each step is described in details in the following paragraphs. 
 
 ### Add the JavaScript file implementing the new step {#component}
 
-A new checkout step must be implemented as UI component. That is, its JavaScript implementation must be a JavaScript module. 
+A new checkout step must be implemented as UI component. That is, its {% glossarytooltip 312b4baf-15f7-4968-944e-c814d53de218 %}JavaScript{% endglossarytooltip %} implementation must be a JavaScript module. 
 
-The file must be stored under the `<your_module_dir>/view` directory.
+The file must be stored under the `<your_module_dir>/view/frontend/web/js/view` directory.
+
+<div class="bs-callout bs-callout-info" id="info">
+<p><code>&lt;your_module_dir&gt;</code> notation stands for the path to your module directory from the root directory. Usually it will be one of the following: <code>app/code/&lt;YourVendor&gt;/&lt;YourModule&gt;</code> or <code>vendor/&lt;yourvendor&gt;/module-&lt;module&gt;-&lt;name&gt;</code>. For more details see <a href="{{page.baseurl}}frontend-dev-guide/conventions.html">Conventional notations for paths to modules and themes</a></p>
+</div>
  
-A sample `view/my-step-view.js` with comments follows:
+A sample `my-step-view.js` with comments follows:
 
 {%highlight js%}
 
@@ -55,12 +61,12 @@ define(
         /**
         *
         * mystep - is the name of the component's .html template, 
-        * your_module_dir - is the name of the your module directory.
+        * <Vendor>_<Module>  - is the name of the your module directory.
         * 
         */
         return Component.extend({
             defaults: {
-                template: 'your_module_dir/mystep'
+                template: '<Vendor>_<Module>/mystep'
             },
  
             //add here your logic to display step,
@@ -121,7 +127,7 @@ define(
 
 ### Add the .html template
 
-In the module directory, add the `.html` template for the component. It must be located under the '<your_module_dir>/view/frontend/web/template` directory.
+In the module directory, add the `.html` template for the component. It must be located under the `<your_module_dir>/view/frontend/web/template` directory.
 
 A sample `mystep.html` follows:
 {%highlight html%}
@@ -150,7 +156,7 @@ A sample `mystep.html` follows:
 
 For the new step to be displayed on the page, you need to declare it in the Checkout page layout, which is defined in `checkout_index_index.xml`. 
 
-So you need to add an [extending]({{site.gdeurl}}frontend-dev-guide/layouts/layout-extend.html) `checkout_index_index.xml` layout file in the following location: `<your_module_dir>/view/frontend/layout/checkout_index_index.xml`
+So you need to add an [extending]({{page.baseurl}}frontend-dev-guide/layouts/layout-extend.html) `checkout_index_index.xml` layout file in the following location: `<your_module_dir>/view/frontend/layout/checkout_index_index.xml`
 
 A sample `checkout_index_index.xml` follows:
 
@@ -167,7 +173,7 @@ A sample `checkout_index_index.xml` follows:
                                         <item name="children" xsi:type="array">
                                             <!-- The new step you add -->
                                             <item name="my-new-step" xsi:type="array">
-                                                <item name="component" xsi:type="string">Magento_Your_Module_Name/js/view/my-step-view</item>
+                                                <item name="component" xsi:type="string">%Vendor%_%Module%/js/view/my-step-view</item>
                                                     <!--To display step content before shipping step "sortOrder" value should be < 1-->
                                                     <!--To display step content between shipping step and payment step  1 < "sortOrder" < 2 -->
                                                     <!--To display step content after payment step "sortOrder" > 2 -->
@@ -188,3 +194,54 @@ A sample `checkout_index_index.xml` follows:
 </page>
 {%endhighlight xml%}
 
+## Create mixins for payment and shipping steps (optional)
+
+If your new step is the first step, you have to create mixins for the payment and shipping steps. Otherwise two steps will be activated on loading of the checkout.
+
+Create a mixin as follows:
+
+1. Create a `Vendor/Module/view/base/requirejs-config.js` file with these contents;
+
+{%highlight js%}
+var config = {
+'config': {
+    'mixins': {
+        'Magento_Checkout/js/view/shipping': {
+            'Vendor_Module/js/view/shipping-payment-mixin': true
+        },
+        'Magento_Checkout/js/view/payment': {
+            'Vendor_Module/js/view/shipping-payment-mixin': true
+        }
+    }
+}
+{%endhighlight js%}
+
+2. Create the mixin. We'll use the same mixin for both payment and shipping:
+
+{%highlight js%}
+define(
+    [
+        'ko'
+    ], function (ko) {
+        'use strict';
+
+        var mixin = {
+
+            initialize: function () {
+                this.visible = ko.observable(false); // set visible to be initially false to have your step show first
+                this._super();
+
+                return this;
+            }
+        };
+
+        return function (target) {
+            return target.extend(mixin);
+        };
+    }
+);
+{%endhighlight js%}
+
+<div class="bs-callout bs-callout-info" id="info" markdown="1">
+For your changes to be applied, you might need to [clean layout cache]({{page.baseurl}}config-guide/cli/config-cli-subcommands-cache.html ) and [static view file cache]({{page.baseurl}}howdoi/clean_static_cache.html). For more info on mixins go to [JS Mixins](http://devdocs.magento.com/guides/v2.1/javascript-dev-guide/javascript/js_mixins.html).
+</div>

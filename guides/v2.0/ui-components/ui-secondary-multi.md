@@ -6,14 +6,15 @@ title: Multiselect Component
 menu_title: Multiselect Component
 menu_node:
 menu_order: 7
+version: 2.0
 github_link: ui-components/ui-secondary-multi.md
 redirect_from: /guides/v2.0/ui-library/ui-secondary-multi.html
 
 ---
 
-####UI Multiselect Component
+#### UI Multiselect Component
 
-The Multiselect component is used to provide check box interface for a specific listing or a specific data set. The component is an extension for Column component and allows selecting either a collection of items or all items from the given set.
+The Multiselect component is used to provide check box interface for a specific listing or a specific data set. The component is an {% glossarytooltip 55774db9-bf9d-40f3-83db-b10cc5ae3b68 %}extension{% endglossarytooltip %} for Column component and allows selecting either a collection of items or all items from the given set.
 
 The Multiselect component which stores the information about the number of selected items in its template shares this data with the following components:
 
@@ -26,7 +27,7 @@ Multiselect is a child of the Grid component and is rendered in its view. Like a
 
 When you specify the `after` or `before` property in the Multiselect component, it references any existing component in the parent container and renders it in that specified position.
 
-####Multiselect JS Component Structure
+#### Multiselect JS Component Structure
 
 The Multiselect component is implemented in the class `app\code\Magento\Ui\view\base\web\js\grid\columns\multiselect.js.`
 
@@ -58,11 +59,11 @@ Code samples available in the default configuration:
 
     This option allows specifying which field represents record identifier.
 
-####Methods and Events
+#### Methods and Events
 
 No events are generated. Any other component that can retrieve access to this component and its properties can get data and track its changes using subscription.
 
-####How to configure Multiselect Component already used in code
+#### How to configure Multiselect Component already used in code
 
 Sample of code where component configurations are performed:
 
@@ -125,7 +126,7 @@ Example of configuration modifications:
 </column>
 {% endhighlight %}
 
-####How to add a new component
+#### How to add a new component
 
 Instance Replacement: One Instance of a Component
 

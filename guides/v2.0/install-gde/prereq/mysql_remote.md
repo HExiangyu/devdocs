@@ -4,17 +4,10 @@ group: install_pre
 subgroup: Prerequisites
 title: Set up a remote MySQL database connection
 menu_title: Set up a remote MySQL database connection
-menu_order: 20
+menu_order: 175
+version: 2.0
 github_link: install-gde/prereq/mysql_remote.md
 ---
-
-#### Contents
-
-*	<a href="#instgde-prereq-mysql-remote-over">When to set up a remote database connection</a>
-*	<a href="#instgde-prereq-mysql-remote-create">Create the remote connection</a>
-*	<a href="#instgde-prereq-mysql-remote-access">Grant access to a database user</a>
-*	<a href="#instgde-prereq-mysql-remote-verify">Verify database access</a>
-*	<a href="#instgde-prereq-mysql-remote-install">Install the Magento software</a>
 
 <h2 id="instgde-prereq-mysql-remote-over">When to set up a remote database connection</h2>
 This topic discusses how to set up a connection from your Magento web node to a MySQL server on another host. If you have a separate database host, you must perform the tasks discussed in this topic to install and use the Magento software. (The Magento *web node* is the server on which you installed the Magento software and that runs your web server.)
@@ -26,8 +19,8 @@ This topic discusses how to set up a connection from your Magento web node to a 
 ### Prerequisites
 Before you begin, you must:
 
-*	<a href="{{ site.gdeurl }}install-gde/prereq/mysql.html">Install MySQL server</a> on the database server 
-*	<a href="{{ site.gdeurl }}install-gde/prereq/mysql.html#instgde-prereq-mysql-config">Create a database instance</a> on the database server
+*	<a href="{{page.baseurl}}install-gde/prereq/mysql.html">Install MySQL server</a> on the database server 
+*	<a href="{{page.baseurl}}install-gde/prereq/mysql.html#instgde-prereq-mysql-config">Create a database instance</a> on the database server
 *	Install the MySQL client on your Magento web node. Consult MySQL documentation for details.
 
 ### High availability
@@ -54,6 +47,10 @@ To create a remote connection:
 
 		Default options are read from the following files in the given order:
 		/etc/my.cnf /etc/mysql/my.cnf /usr/etc/my.cnf ~/.my.cnf
+
+	<div class="bs-callout bs-callout-info" id="info" markdown="1">
+  		On Ubuntu 16, the path is typically `/etc/mysql/mysql.conf.d/mysqld.cnf`.
+	</div>
 
 3.	Search the configuration file for `bind-address`.
 
@@ -122,7 +119,7 @@ If your web server is clustered, enter the command on each web server host.
 <h2 id="instgde-prereq-mysql-remote-install">Install the Magento software</h2>
 When you install the Magento software using either the command line or Setup Wizard, you must specify the following:
 
-*	The Base URL (also referred to as the *store address*) specifies the host name or IP address of the *web node*
+*	The Base {% glossarytooltip a05c59d3-77b9-47d0-92a1-2cbffe3f8622 %}URL{% endglossarytooltip %} (also referred to as the *store address*) specifies the host name or IP address of the *web node*
 *	Database host is the *remote database server* IP address (or load balancer if the database server is clustered)
 *	Database user name is the *local web node* database user to which you gave access
 *	Database password is the local web node user's password
@@ -131,9 +128,9 @@ When you install the Magento software using either the command line or Setup Wiz
 
 #### Related topics
 
-*	<a href="{{ site.gdeurl }}install-gde/prereq/optional.html">Installing optional software</a>
-*	<a href="{{ site.gdeurl }}install-gde/prereq/apache.html">Apache</a>
-*	<a href="{{ site.gdeurl }}install-gde/prereq/php-ubuntu.html">PHP 5.5 or 5.6&mdash;Ubuntu</a>
-*	<a href="{{ site.gdeurl }}install-gde/prereq/php-centos.html">PHP 5.5 or 5.4&mdash;CentOS</a>
-*	<a href="{{ site.gdeurl }}install-gde/prereq/security.html">Configuring security options</a>
-*	<a href="{{ site.gdeurl }}install-gde/install/pre-install.html">Ways to install the Magento software</a>
+*	<a href="{{page.baseurl}}install-gde/prereq/optional.html">Installing optional software</a>
+*	<a href="{{page.baseurl}}install-gde/prereq/apache.html">Apache</a>
+*	<a href="{{page.baseurl}}install-gde/prereq/php-ubuntu.html">PHP 5.5, 5.6, or 7.0&mdash;Ubuntu</a>
+*	<a href="{{page.baseurl}}install-gde/prereq/php-centos.html">PHP 5.5, 5.6, or 7.0&mdash;CentOS</a>
+*	<a href="{{page.baseurl}}install-gde/prereq/security.html">Configuring security options</a>
+*	[How to get the Magento software]({{ page.baseurl }}install-gde/bk-install-guide.html)

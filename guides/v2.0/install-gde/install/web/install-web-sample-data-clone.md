@@ -6,7 +6,14 @@ title: 通过克隆存储库安装
 menu_title: 通过克隆存储库安装
 menu_node: 
 menu_order: 4
+version: 2.0
 github_link: install-gde/install/web/install-web-sample-data-clone.md
 ---
 
 {% include install/sampledata/sample-data-clone.md %}
+<<<<<<< HEAD
+=======
+
+### Install the Magento software
+After sample data installation is complete, install the Magento software using the [Web Setup Wizard]({{ page.baseurl }}install-gde/install/web/install-web.html).
+>>>>>>> develop

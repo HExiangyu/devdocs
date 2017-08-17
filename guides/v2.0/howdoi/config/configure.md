@@ -6,7 +6,15 @@ title: Configure Magento
 menu_title: Configure Magento
 menu_node: parent
 menu_order: 1
-github_link: howdoi/deploy/configure.md
+version: 2.0
+github_link: howdoi/config/configure.md
 ---
 
-After you finish your installation, <a href="{{ site.gdeurl }}install-gde/install/post-install-config.html">Configure the Magento application</a>.
+After you install the Magento application, you can:
+
+*	[Configure Magento]({{page.baseurl}}install-gde/install/post-install-config.html)
+*	[Set up logging]({{ page.baseurl }}config-guide/log/log-intro.html)
+*	[Set up Varnish for page caching]({{ page.baseurl }}config-guide/varnish/config-varnish.html)
+*	[Set up Redis for session storage]({{ page.baseurl }}config-guide/redis/config-redis.html)
+*	[More options]({{ page.baseurl }}config-guide/bk-config-guide.html)
+

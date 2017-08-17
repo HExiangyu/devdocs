@@ -1,34 +1,28 @@
 ---
 layout: default
 group: config-guide
-subgroup: B_Security
+subgroup: 02_Security
 title: Secure cron.php to run in a browser
 menu_title: Secure cron.php to run in a browser
 menu_order: 2
 menu_node: 
+version: 2.0
 github_link: config-guide/secy/secy-cron.md
 ---
-
-#### Contents
-*	<a href="#config-cron-secure-over">Overview of securing cron</a>
-*	<a href="#config-cron-secure-apache">Secure cron with Apache</a>
-*	<a href="#config-cron-secure-nginx">Secure cron with nginx</a>
-*	<a href="#config-cron-secure-apache-verify">Verify cron is secure</a>
-*	<a href="#config-cli-cron-browser">Run cron from a web browser</a>
 
 <h2 id="config-cron-secure-over">Overview of securing cron</h2>
 The Magento cron job runs a number of scheduled tasks, including reindexing, generating e-mails, generating newsletters, generating sitemaps, and so on. cron is a vital part of your Magento configuration.
 
 You can run a Magento cron job in the following ways:
 
-*	Using the <a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cron.html#config-cli-cron-group"><code>magento cron:run</code></a> command, either from the command line or in a crontab
+*	Using the <a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cron.html#config-cli-cron-group"><code>magento cron:run</code></a> command, either from the command line or in a crontab
 *	Running `<your Magento install dir>/pub/cron.php?[group=<name>]` in a web browser
 
 This topic discusses securing `pub/cron.php` to prevent it from being used in a malicious exploit. If cron is unsecured, any user could potentially run cron to attack your Magento application.
 
 <div class="bs-callout bs-callout-info" id="info">
 <span class="glyphicon-class">
-  <p>You do not need to do anything if you use the <a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cron.html#config-cli-cron-group"><code>magento cron:run</code></a> command to run cron. This command uses a different process that is already secure.</p></span>
+  <p>You do not need to do anything if you use the <a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cron.html#config-cli-cron-group"><code>magento cron:run</code></a> command to run cron. This command uses a different process that is already secure.</p></span>
 </div>
 
 The following sections discuss an example of securing cron using <a href="http://tools.ietf.org/html/rfc2617" target="_blank">HTTP Basic</a> authentication. You can optionally configure other types of authentication as well; we provide references for that information.
@@ -80,7 +74,7 @@ Contents of the file:
 <h3 id="config-cron-secure-apache-htaccess">Step 3: Secure cron in <code>.htaccess</code></h3>
 To add security for cron in Magento's `.htaccess`:
 
-1.	Log in to your Magento server as, or switch to, the Magento file system owner.
+1.	Log in to your Magento server as, or switch to, the {% glossarytooltip 5e7de323-626b-4d1b-a7e5-c8d13a92c5d3 %}Magento file system owner{% endglossarytooltip %}.
 2.	Open `<your Magento install dir>/pub/.htaccess` in a text editor.
 
 	(Because `cron.php` is located in the `pub` directory, edit this `.htaccess` only.)
@@ -103,16 +97,10 @@ To add security for cron in Magento's `.htaccess`:
     		Require group <name>
 		</Files>
 4.	Save your changes to `.htaccess` and exit the text editor.
-5.	Restart Apache:
-
-	CentOS: `service httpd restart`
-
-	Ubuntu: `service apache2 restart`
-
 6.	Continue with <a href="#config-cron-secure-apache-verify">Verify cron is secure</a>.
 
 <h2 id="config-cron-secure-nginx">Secure cron with nginx</h2>
-This section discusses how to secure cron using the nginx web server. You must perform the following tasks:
+This section discusses how to secure cron using the {% glossarytooltip b14ef3d8-51fd-48fe-94df-ed069afb2cdc %}nginx{% endglossarytooltip %} web server. You must perform the following tasks:
 
 1.	Set up an encrypted password file for nginx
 2.	Modify your nginx configuration to reference the password file when accessing `pub/cron.php`
@@ -134,7 +122,7 @@ Add the following to your `nginx.conf`:
 Restart nginx and continue with the next section.
 
 <h2 id="config-cron-secure-apache-verify">Verify cron is secure</h2>
-This section discusses how to verify that `pub/cron.php` is working by verifying that it's creating rows in the `cron_schedule` database table. This section shows how to use SQL commands but you can also use a tool like <a href="{{ site.gdeurl }}install-gde/prereq/optional.html#install-optional-phpmyadmin">phpmyadmin</a>.
+This section discusses how to verify that `pub/cron.php` is working by verifying that it's creating rows in the `cron_schedule` database table. This section shows how to use SQL commands but you can also use a tool like <a href="{{page.baseurl}}install-gde/prereq/optional.html#install-optional-phpmyadmin">phpmyadmin</a>.
 
 <div class="bs-callout bs-callout-info" id="info">
 <span class="glyphicon-class">
@@ -158,7 +146,7 @@ To verify cron:
 		use magento;
 1.	Delete all rows from the `cron_schedule` database table:
 	
-		TRUNCATE TABLE cron_schedule 
+		TRUNCATE TABLE cron_schedule;
 3.	Run cron from a browser:
 
 		http[s]://<magento hose name or ip>/pub/cron.php?group=default
@@ -172,7 +160,7 @@ To verify cron:
 	<img src="{{ site.baseurl }}common/images/cron_auth.png" alt="Authorizing cron using HTTP Basic">
 5.	Verify rows were added to the table:
 
-		SELECT * from cron_schedule
+		SELECT * from cron_schedule;
 
 	Verify that some rows are returned. If so, you're done!
 
@@ -230,5 +218,5 @@ For example,
   <p>You must run cron twice: the first time to discover tasks to run and the second time to run the tasks themselves.</p></span>
 </div>
 
-<a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cron.html#config-cli-cron-group-conf">More information about cron groups</a>
+<a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cron.html#config-cli-cron-group-conf">More information about cron groups</a>
 

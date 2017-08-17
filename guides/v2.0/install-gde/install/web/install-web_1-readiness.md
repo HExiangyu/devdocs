@@ -6,6 +6,7 @@ title: 第一步. 准备情况检查
 menu_title: 第一步. 准备情况检查
 menu_node: 
 menu_order: 2
+version: 2.0
 github_link: install-gde/install/web/install-web_1-readiness.md
 ---
 
@@ -14,6 +15,11 @@ github_link: install-gde/install/web/install-web_1-readiness.md
 
 {% include install/web/install-web_1-readiness.md %}
 
+<<<<<<< HEAD
 #### 下一步
 <a href="{{ site.gdeurl }}install-gde/install/web/install-web_2-db.html">第二步. 创建数据库</a>
+=======
+#### Next step
+<a href="{{page.baseurl}}install-gde/install/web/install-web_2-db.html">Step 2. Add a database</a>
+>>>>>>> develop
 

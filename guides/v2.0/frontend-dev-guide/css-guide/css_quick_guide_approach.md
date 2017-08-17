@@ -5,8 +5,10 @@ subgroup: D_CSS_G
 title: 自定义主题样式的简单方法
 menu_title: 自定义主题样式的简单方法
 menu_order: 1
+version: 2.0
 github_link: frontend-dev-guide/css-guide/css_quick_guide_approach.md
 ---
+<<<<<<< HEAD
 <h2>本主题说什么</h2>
 假设您创建了一个新的主题从默认的Magento主题Magento blank或luma继承，并选择 <a href="{{site.gdeurl}}frontend-dev-guide/css-guide/css_quick_guide_mode.html">LESS编译模式</a>.下一个是什么?在何处添加样式更改?本主题提供快速解答。
 
@@ -16,6 +18,10 @@ github_link: frontend-dev-guide/css-guide/css_quick_guide_approach.md
 - <a href="#structured_changes">添加组织结构的变化</a>
 	- <a href="#structured_extend">扩展组件的样式</a>
 	- <a href="structured_override">重写组件的样式</a>
+=======
+<h2>What's in this topic</h2>
+Let's say you created a new {% glossarytooltip d2093e4a-2b71-48a3-99b7-b32af7158019 %}theme{% endglossarytooltip %} inheriting from Magento Blank or Luma, and chose the <a href="{{page.baseurl}}frontend-dev-guide/css-guide/css_quick_guide_mode.html">LESS compilation mode</a>. What's next? Where to add the style changes? This topic gives quick answers.
+>>>>>>> develop
 
 
 <h2 id="simple_extend">最简单的方式来扩展父样式</h2> 
@@ -41,7 +47,11 @@ github_link: frontend-dev-guide/css-guide/css_quick_guide_approach.md
 
 <h2 id="simple_override">最简单的方法来重写父样式</h2>
 
+<<<<<<< HEAD
 重写父样式 (即，重写默认 Magento UI 库变量):
+=======
+To override parent styles (that is, override default Magento UI {% glossarytooltip 08968dbb-2eeb-45c7-ae95-ffca228a7575 %}library{% endglossarytooltip %} variables):
+>>>>>>> develop
 <ol>
 <li>在你的主题目录创建<code>web/css/source</code>子目录. </li>
 <li>并在这个文件下创建一个<code>_theme.less</code>文件. 然后看起路径像下面这样:
@@ -66,7 +76,7 @@ The drawback of this approach is that you need to monitor and manually update yo
 
 <h2 id="structured_changes">添加组织结构的变化</h2>
 
-To make your changes easier to read and support, structure them by adding a separate overriding or extending <code>.less</code> files for each <a href="{{site.gdeurl}}frontend-dev-guide/css-topics/theme-ui-lib.html#library_elements" target="_blank">Magento UI library component</a> you change. Let's use the <code>button</code> component implemented in <code>_button.less</code> as an illustration.
+To make your changes easier to read and support, structure them by adding a separate overriding or extending <code>.less</code> files for each <a href="{{page.baseurl}}frontend-dev-guide/css-topics/theme-ui-lib.html#library_elements" target="_blank">Magento UI library component</a> you change. Let's use the <code>button</code> component implemented in <code>_button.less</code> as an illustration.
 
 <h3 id="structured_extend">扩展组件的样式</h3>
 <ol>
@@ -92,8 +102,13 @@ In <code>_extend.less</code> register the <code>_buttons_extend.less</code> by a
 </li>
 </ol>
 
+<<<<<<< HEAD
 <h3 id="structured_override">重写组件的样式</h3>
 To extend the parent theme's styles for buttons in your theme:
+=======
+<h3 id="structured_override">Override component's styles</h3>
+To override the parent theme's styles for buttons in your theme:
+>>>>>>> develop
 <ol>
 <li>In your theme directory, create a <code>web/css/source</code> sub-directory. </li>
 <li>Create a <code>_buttons.less</code> file here. The path to it looks like following: 
@@ -114,7 +129,13 @@ This file overrides the <code>_buttons.less</code> of the parent theme.
 
 <h2>推荐的阅读</h2>
 <ul>
+<<<<<<< HEAD
 <li><a href="{{site.gdeurl}}frontend-dev-guide/css-topics/css_debug.html" target="_blank">调试样式</a></li>
 <li><a href="{{site.gdeurl}}frontend-dev-guide/css-topics/css-preprocess.html" target="_blank">CSS 预处理</a></li>
 <li><a href="{{site.gdeurl}}frontend-dev-guide/css-topics/theme-ui-lib.html" target="_blank">Magento UI 库</a></li>
+=======
+<li><a href="{{page.baseurl}}frontend-dev-guide/css-topics/css_debug.html" target="_blank">Compile LESS with Grunt</a></li>
+<li><a href="{{page.baseurl}}frontend-dev-guide/css-topics/css-preprocess.html" target="_blank">CSS preprocessing</a></li>
+<li><a href="{{page.baseurl}}frontend-dev-guide/css-topics/theme-ui-lib.html" target="_blank">Magento UI library</a></li>
+>>>>>>> develop
 </ul>

@@ -1,24 +1,24 @@
 ---
 layout: default
 group: config-guide
-subgroup: Solr
+subgroup: 15_Solr
 title: Configure Solr and Magento
 menu_title: Configure Solr and Magento
 menu_order: 2
-menu_node: 
+menu_node:
+version: 2.0
 github_link: config-guide/solr/solr-magento.md
 ---
 
 <img src="{{ site.baseurl }}common/images/ee-only_large.png" alt="This topic applies to Enterprise Edition only">
 
+<div class="bs-callout bs-callout-warning" markdown="1">
+Solr is deprecated in Magento 2.1 and will not be supported in 2.2.
+In a future release, Solr compatibility will be removed.
 
-#### Contents
+If possible, use [Elastic Search]({{page.baseurl}}config-guide/elasticsearch/es-overview.html) as an alternative catalog search engine.
+</div>
 
-*	<a href="#config-solr">Configure Solr to work with Magento</a>
-*	<a href="#solr-reindex">Reindexing catalog search and refreshing the full page cache</a>
-*	<a href="#solr-verify">Verify Solr is working</a>
-
-<h2 id="config-solr">Configure Solr to work with Magento</h2>
 The following topics discuss how to configure Solr to work with Magento EE:
 
 * <a href="#config-solr-copy-config-files">Copy the Magento Solr configuration and start Solr</a>
@@ -34,22 +34,22 @@ Magento comes packaged with a sample Solr configuration you can use and customiz
 1.  As a user with <code>root</code> privileges, enter the following commands in the order shown to copy over the Solr configuration with the one packaged with Magento EE:
 
 		cd <your Solr install dir>/example/solr
-		cp -R collection1 magento2/conf
+		cp -R collection1 magento2
 		cd magento2
-		cp -R <your Magento EE install dir>/vendor/magento/module-solr/conf/* .
+		cp -R <your Magento EE install dir>/vendor/magento/module-solr/conf/* ./conf/
 
 	For example, if Solr is installed in <code>/opt/solr/solr-4.10.4</code> and Magento EE is installed in <code>/var/www/magento/html/magento2ee</code>, enter:
 
-		cd /opt/solr/solr/solr-4.10.4
+		cd /opt/solr/solr/solr-4.10.4/example/solr
 		cp -R collection1 magento2
 		cd magento2
-		cp -R /var/www/html/magento2ee/vendor/magento/module-solr/conf/* .
+		cp -R /var/www/html/magento2ee/vendor/magento/module-solr/conf/* ./conf/
 
 	<div class="bs-callout bs-callout-info" id="info">
 	 <p>If you're prompted to overwrite files, try the command <code>\cp -R &lt;your Magento EE install dir>/vendor/magento/module-solr/conf/* .</code></p>
 	</div>
 
-2.  After copying files, open `example/solr/core.properties` in a text editor and change:
+2.  After copying files, open the `<your Solr install dir>/example/solr/magento2/core.properties` file in a text editor and change:
 
 		name=collection1
 
@@ -73,13 +73,14 @@ Magento comes packaged with a sample Solr configuration you can use and customiz
 		<dataDir>${solr.data.dir:}</dataDir>
 
 4.  Start Solr.
-	
+
 	As a user with <code>root</code> privileges, enter the following command to start Solr:
 
-		java -jar <your Solr install dir>/example/start.jar
+		cd <your Solr install dir>/example
+		java -jar start.jar
 
 	<div class="bs-callout bs-callout-warning">
-			<p>This method for starting Solr is for convenience and testing purposes only. In a production environment, you should start and stop Solr using a script as discussed in <a href="{{ site.gdeurl }}config-guide/solr/solr-script.html#solr-script">Script Solr startup and shutdown</a>.</p>
+			<p>This method for starting Solr is for convenience and testing purposes only. In a production environment, you should start and stop Solr using a script as discussed in <a href="{{page.baseurl}}config-guide/solr/solr-script.html#solr-script">Script Solr startup and shutdown</a>.</p>
 	</div>
 
 <h3 id="config-solr-magento">Configure Magento to work with Solr</h3>
@@ -87,8 +88,8 @@ This section discusses how to configure Magento EE to use the Solr search engine
 
 To configure Magento to work with Solr:
 
-1.  Log in to the Magento Admin as an administrator.
-2.  Click <strong>STORES</strong> > <strong>Configuration</strong> > CATALOG > <strong>Catalog</strong> > <strong>Catalog Search</strong>.
+1.  Log in to the {% glossarytooltip 18b930cf-09cc-47c9-a5e5-905f86c43f81 %}Magento Admin{% endglossarytooltip %} as an administrator.
+2.  Click <strong>STORES</strong> > <strong>Configuration</strong> > {% glossarytooltip 8d40d668-4996-4856-9f81-b1386cf4b14f %}CATALOG{% endglossarytooltip %} > <strong>Catalog</strong> > <strong>Catalog Search</strong>.
 3.  In the right pane, expand <strong>Catalog Search</strong>.
 4.  The following table shows the minimum amount of information to enter to test the connection to your Solr search engine. Leave all other values at their defaults.<br />
 <table>
@@ -157,7 +158,7 @@ The button changes as follows.
 	In particular, make sure you started Solr as a user with <code>root</code> privileges.</li>
 	<li>Verify that <a href="http://php.net/manual/en/filesystem.configuration.php" target="_blank"><code>allow_url_fopen = On</code></a> is present in your server's <code>php.ini</code>.<br />
 	If you are not sure where <code>php.ini</code> is located, you can <a href="http://kb.mediatemple.net/questions/764/How+can+I+create+a+phpinfo.php+page%3F#gs" target="_blank">create a <code>phpinfo.php</code> page</a> to locate it.</li>
-	<li>Make sure that <a href="{{ site.gdeurl }}config-guide/solr/solr-overview.html#prereq-secy">UNIX firewall and SELinux</a> are both disabled, or set up rules to enable Solr and Magento to communicate with each other.</li>
+	<li>Make sure that <a href="{{page.baseurl}}config-guide/solr/solr-overview.html#prereq-secy">UNIX firewall and SELinux</a> are both disabled, or set up rules to enable Solr and Magento to communicate with each other.</li>
 	<li>Verify the value of the <strong>Solr Server Hostname</strong> field. Make sure the server is available. You can try the server's IP address instead.</li>
 	<li>Use the command <code>netstat -an | grep <em>listen-port</em></code> command to verify that the port specified in the <strong>Solr Server Port</strong> field is not being used by another process.<br />
 	For example, to see if Solr is running on its default port, use the following command:
@@ -173,21 +174,21 @@ The button changes as follows.
 Only after the test connection succeeds, click <strong>Save Config</strong> and continue with the next section.
 
 <h2 id="solr-reindex">Reindexing catalog search and refreshing the full page cache</h2>
-After you change Magento's Solr configuration, you must reindex the catalog search index and refresh the full page using the Admin or command line.
+After you change Magento's Solr configuration, you must reindex the catalog search index and refresh the full page using the {% glossarytooltip 29ddb393-ca22-4df9-a8d4-0024d75739b1 %}Admin{% endglossarytooltip %} or command line.
 
-To refresh the cache using the Admin:
+To refresh the {% glossarytooltip 0bc9c8bc-de1a-4a06-9c99-a89a29c30645 %}cache{% endglossarytooltip %} using the Admin:
 
 1.  In the Admin, click <strong>System</strong> > <strong>Cache Management</strong>.
-2.  Select the check box next to <strong>Page Cache</strong>. 
+2.  Select the check box next to <strong>Page Cache</strong>.
 3.  From the <strong>Actions</strong> list in the upper right, click <strong>Refresh</strong>.<br />
 		The following figure shows an example.<br />
 		<img src="{{ site.baseurl }}common/images/solr_refresh-cache.png" width="600px">
 
-To clean the cache using the command line, use the <a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cache.html#config-cli-subcommands-cache-clean">`magento cache:clean`</a> command.
+To clean the cache using the command line, use the <a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cache.html#config-cli-subcommands-cache-clean">`magento cache:clean`</a> command.
 
 To reindex using the command line:
 
-1.	Log in to your Magento server as, or switch to, the <a href="{{ site.gdeurl }}install-gde/prereq/apache-user.html">Magento file system owner</a>.
+1.	Log in to your Magento server as, or switch to, the <a href="{{page.baseurl}}install-gde/prereq/file-sys-perms-over.html">Magento file system owner</a>.
 2.	Enter the following command to reindex all indexers:
 
 		php <your Magento install dir>/bin magento indexer:reindex
@@ -199,11 +200,11 @@ To reindex using the command line:
 3.	Wait while the indexers are reindexed.
 
 <div class="bs-callout bs-callout-info" id="info">
-	<p>Unlike the cache, indexers are updated by a cron job. Make sure <a href="{{ site.gdeurl }}config-guide/cli/config-cli-subcommands-cron.html">cron is enabled</a> before you start using Solr.</p>
+	<p>Unlike the cache, indexers are updated by a cron job. Make sure <a href="{{page.baseurl}}config-guide/cli/config-cli-subcommands-cron.html">cron is enabled</a> before you start using Solr.</p>
 </div>
 
 <h2 id="solr-verify">Verify Solr is working</h2>
-To verify Solr works, go to the storefront and search for any term (including one that won't return results) and look for the search in the Solr command window.
+To verify Solr works, go to the {% glossarytooltip 1a70d3ac-6bd9-475a-8937-5f80ca785c14 %}storefront{% endglossarytooltip %} and search for any term (including one that won't return results) and look for the search in the Solr command window.
 
 The following figure shows an example of a storefront search.
 
@@ -215,4 +216,4 @@ The following excerpt from the Solr command window shows the same search:
 
 
 #### Next step
-<a href="{{ site.gdeurl }}config-guide/solr/solr-script.html">Prepare Solr for production</a>
+<a href="{{page.baseurl}}config-guide/solr/solr-script.html">Prepare Solr for production</a>

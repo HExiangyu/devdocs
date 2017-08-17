@@ -1,15 +1,17 @@
 ---
 layout: default
 group:  UI Library
-subgroup: H_Using_UI
+subgroup: A_Using_UI
 title: Using UI components' client-side
 menu_title: Using UI components' client-side
 menu_node: parent
+version: 2.0
 github_link: ui-components/ui_components_js.md
+redirect_from: /guides/v2.0/javascript-dev-guide/ui_components_js.html
 ---
 
 ## What's in this topic
-This topic is aimed for developers, who need to reuse the [Magento UI Components]({{site.gdeurl}}ui-library/ui-library-component.html). 
+This topic is aimed for developers, who need to reuse the [Magento UI Components]({{page.baseurl}}ui-library/ui-library-component.html). 
 
 The topic covers the following:
 
@@ -25,13 +27,13 @@ A UI component's behavior, configuration and structure is defined by the followi
 
  - The available configuration options and methods for components of a certain type, defined in the component's .js file.
 
- - The actual configuration and structure of a particular component, specified in the component's configuration `.xml` file, in the scope of the `<argument></argument>` node. The configuration file also extends properties, specifies the component'stemplate and the path to the component's `.js` file.
+ - The actual configuration and structure of a particular component, specified in the component's configuration `.xml` file, in the scope of the `<argument></argument>` node. The configuration file also extends properties, specifies the component's template and the path to the component's `.js` file.
 
 All these properties, options, and methods are available in the component template's scope.
 
 
 ## Most important UI components' properties {#main_properties}
-The most important client-side properties of a UI component are the following:
+The most important client-side properties of a {% glossarytooltip 9bcc648c-bd08-4feb-906d-1e24c4f2f422 %}UI component{% endglossarytooltip %} are the following:
 
  - `component`: the path to the component's `.js` file in terms of RequireJS.
 
@@ -61,7 +63,7 @@ The `.html` template of the bookmarks component is [Magento/Ui/view/base/web/tem
  - children: is a general name for the nested components of a certain component. Children can be specified in the `.xml` configuration of the parent component (all nodes except `<argument/>` and `<dataSource/>` are considered children) and in the Knockout JS templates: children are the keys of the `elems` property.
 
  - `name`: the name of the component specified in the `.xml` configuration file of the parent UI component. In the run-time in a browser this value is transformed to a complex string. This string represents hierarchy of components in the run-time.
-For example, (`app/code/Magento/Cms/view/adminhtml/ui_component/cms_block_listing.xml:57`)[{{site.mage2000url}}app/code/Magento/Cms/view/adminhtml/ui_component/cms_block_listing.xml#L57]:
+For example, [`app/code/Magento/Cms/view/adminhtml/ui_component/cms_block_listing.xml:57`]({{site.mage2000url}}app/code/Magento/Cms/view/adminhtml/ui_component/cms_block_listing.xml#L57):
 
 {%highlight xml%} 
 <component name="columns_controls">
@@ -71,9 +73,9 @@ In the run-time `columns_controls` is transformed to the following string: `cms_
 
 This string is constructed from the following values:
 
- - `cms_block_listing.cms_block_listing`: - the full name of the root component.
+ - `cms_block_listing.cms_block_listing`: the full name of the root component.
  - `listing_top`: the value of the `name` attribute of the parent `<container name="listing_top">` component. 
- - `columns_controls` - the value of the `name` attribute of the component itself.
+ - `columns_controls`: the value of the `name` attribute of the component itself.
 
 ## UI Components' properties used for linking {#comp_link}
 
@@ -166,7 +168,7 @@ Example of using `links` in a component's configuration `.xml` file:
 </argument>
 {% endhighlight xml%}
 
-- `listens`: used to track the changes of a component's proporty.
+- `listens`: used to track the changes of a component's property.
   - `key` - name of the internal property which listens to the changes.
   - `value` - name of the property or method which is tracked for changes. Can use string templates.
 
@@ -251,7 +253,7 @@ To define the UI components used on a page, you can use browser built-in develop
 3. Search for `data-bind="scope:`. The string after `scope` is the full name of the component.
 5. Open developers tools and in the console tab run `require('uiRegistry').get('<full_component_name>')`. Where `<full_component_name>` is the name you defined on the previous step. The name and the configuration of the UI component instance is displayed once the command is executed.
 
-For illustration, let's find out what UI components are used on the Catalog page in the Admin panel:
+For illustration, let's find out what UI components are used on the {% glossarytooltip 8d40d668-4996-4856-9f81-b1386cf4b14f %}Catalog{% endglossarytooltip %} page in the {% glossarytooltip 29ddb393-ca22-4df9-a8d4-0024d75739b1 %}Admin{% endglossarytooltip %} panel:
 
 <div style="border: 1px solid #ABABAB">
 <img src="{{site.baseurl}}common/images/ui_debug1.png" alt="The catalog page"> 

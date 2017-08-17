@@ -6,23 +6,22 @@ title: TreeMassAction Component
 menu_title: TreeMassAction Component
 menu_node:
 menu_order: 4
+version: 2.0
 github_link: ui-components/ui-secondary-treemass.md
 redirect_from: /guides/v2.0/ui-library/ui-secondary-treemass.html
 
 ---
 
-<h3 id="treemass">UI TreeMassAction Component</h3>
-
-TreeMassAction Component is extension to MassAction component that provides nested sub-menu. 
+TreeMassAction Component is {% glossarytooltip 55774db9-bf9d-40f3-83db-b10cc5ae3b68 %}extension{% endglossarytooltip %} to MassAction component that provides nested sub-menu. 
 
 The TreeMassAction JS component is used by the TwoStepMassAction component.
 
-####PHP Implementation of TreeMassAction
+#### PHP Implementation of TreeMassAction
 
 To enable Massaction Component for your Listing instance it should be declared as a child.
 
 Example:
-`<your module root dir>/Magento/Catalog/view/adminhtml/ui_component/product_listing.xml`
+`<Magento_Catalog_module_dir>/view/adminhtml/ui_component/product_listing.xml`
 
 {% highlight XML %}
 <massaction name="listing_massaction">
@@ -83,15 +82,15 @@ Example:
 </massaction>
 {% endhighlight%}
 
-####Configuration
+#### Configuration
 Component can be configured in two ways:
 
-* Globally: using any module's <a href="{{ site.gdeurl }}ui-library/ui-definition.html">`view/*/ui_component/etc/definition.xml`</a> file. All settings declared in this file are applied to all component's instances
-* Locally: using concrete component instance configuration, such as `<your module root dir>/Magento/Catalog/view/adminhtml/ui_component/product_listing.xml`
+* Globally: using any module's <a href="{{page.baseurl}}ui-library/ui-definition.html">`view/*/ui_component/etc/definition.xml`</a> file. All settings declared in this file are applied to all component's instances
+* Locally: using concrete component instance configuration, such as `<Magento_Catalog_module_dir>/view/adminhtml/ui_component/product_listing.xml`
 
-####TreeMassAction JS Component Structure
+#### TreeMassAction JS Component Structure
 
-####Component Elements (classes, files, etc)
+#### Component Elements (classes, files, etc)
 
 The following are the component elements:
 
@@ -99,13 +98,13 @@ The following are the component elements:
 * Template: `app\code\Magento\Ui\view\base\web\templates\grid\tree-massactions.html`
 * Template: `app\code\Magento\Ui\view\base\web\templates\grid\submenu.html`
 
-####Dependencies on Other Components
+#### Dependencies on Other Components
 
 Dependency on the following component:
 
 * Collapsible: `app\code\Magento\Ui\view\base\web\js\grid\massactions.js`
 
-####Component Options
+#### Component Options
 
 The following options are available:
 
@@ -113,15 +112,15 @@ The following options are available:
 * selectProvider - option which defines the component with selections data
 * actions - array which contains initially available actions
 
-####Methods and Events
+#### Methods and Events
 
-The following api methods are available:
+The following {% glossarytooltip 786086f2-622b-4007-97fe-2c19e5283035 %}api{% endglossarytooltip %} methods are available:
 
 * getAction - returns action instance found by the provided identifier
 * applyAction - applies specified as identifier action
 * hideSubmenus - hide specified actions and nested submenu
 
-####How to Configure Already Used in Code TreeMassAction Component
+#### How to Configure Already Used in Code TreeMassAction Component
 
 `app\code\Magento\Catalog\view\adminhtml\ui_component\product_listing.xml`
 
@@ -186,7 +185,7 @@ Callback is provided by another component.
 </massaction>
 {% endhighlight %}
 
-####Instance Replacement: One Instance of a Component
+#### Instance Replacement: One Instance of a Component
 
 Redefine link to constructor:
 

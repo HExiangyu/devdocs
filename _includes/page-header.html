@@ -1,5 +1,6 @@
 <!-- page-header -->
 <section class="page-intro">
+<<<<<<< HEAD
 	<div class="container">
 		<h1 class="page-heading">{{ page.title }}</h1>
 		{% if page.github_link %}	
@@ -9,4 +10,20 @@
 			<a class="contributor" href="{{ page.contributor_link }}" target="_blank">Thanks to {{ page.contributor_name }} for contributing this topic</a>
 		{% endif %}
 	</div>
+=======
+	{% include breadcrumbs.html %}
+
+	{% if page.ee_only == true %}
+		<span class="ee-only">Enterprise Edition only</span>
+	{% endif %}
+
+	{% if page.subtitle %}
+		<h1 class="page-subtitle">{{ page.subtitle }}</h1>
+	{% endif %}
+
+	<h1 class="page-heading">{{ page.title }}</h1>
+
+  {% include tabs.md %}
+
+>>>>>>> develop
 </section>

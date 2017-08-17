@@ -6,14 +6,9 @@ title: Transfer the Magento software to your hosted system
 menu_title: Transfer the Magento software to your hosted system
 menu_order: 5
 menu_node: 
+version: 2.0
 github_link: install-gde/install/hosted/hosted_get-ftp.md
 ---
-
-#### Contents
-*	<a href="#newbie-ftp-overview">Magento installation overview</a>
-*	<a href="#get-archive">Get the Magento software packages</a>
-*	<a href="#set-up-ftp">Set up FTP and transfer the Magento archive</a>
-*	<a href="#extract-perms">Extract the archive</a>
 
 <h2 id="newbie-ftp-overview">Magento installation overview</h2>
 1.	Download the software to your computer.
@@ -76,4 +71,4 @@ To extract the archive:
 	<img src="{{ site.baseurl }}common/images/install-merch_file-manager-after.png" width="750px">
 
 #### Next step
-<a href="{{ site.gdeurl }}install-gde/install/hosted/hosted_install.html">Install the Magento software</a>
+<a href="{{page.baseurl}}install-gde/install/hosted/hosted_install.html">Install the Magento software</a>

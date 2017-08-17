@@ -6,12 +6,11 @@ title: Bookmark Component
 menu_title: Bookmark Component
 menu_node:
 menu_order: 9
+version: 2.0
 github_link: ui-components/ui-secondary-bookmark.md
 redirect_from: /guides/v2.0/ui-library/ui-secondary-bookmark.html
 
 ---
-
-<h3 id="bookmark">UI Bookmark component</h3>
 
 Bookmark Component is responsible for storing active and changed states of data grids. It includes state of filters, columns position, applied sorting, pagination, and so on.
 
@@ -76,7 +75,7 @@ PK - increment Id
 
 UX1 - unique key
 
-####Bookmarks JS Component Structure
+#### Bookmarks JS Component Structure
 
 Bookmark component consists of
 
